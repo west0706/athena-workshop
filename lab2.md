@@ -1,6 +1,6 @@
 #Lab 2 - Interacting with AWS Athena#
 
-*During this lab, you will create a new database using the AWS Management Console, create a new table and run your first query. Then you will connect to your table using MySQLWorkbench as well as AWS QuickSight*
+*During this lab, you will create a new database using the AWS Management Console, create a new table and run your first query. Then you will connect to your table using MySQLWorkbench as well as visualize the data using AWS QuickSight*
 
 **Create a Database and the Table**
  - Open AWS console at https://console.aws.amazon.com/athena/
@@ -83,7 +83,6 @@ FROM <USER_NAME>.yellow_trips_csv limit 100
  - In the left side panel ‘Fields’ section find the ‘pickup-date’ column and uncheck it.
  - Perform the same to the ‘dropoff-date’ column.
  - Click ‘Save & Visualize’
-
  - Select ‘Vertical Bar Chart’ from the ‘Visual Types’ Panel
  - Drag ‘vendor_id’ into ‘Group/Color’ box
  - Drag ‘rate_code’ into ‘X axis’ box
