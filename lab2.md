@@ -39,6 +39,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS `vadim@doit-intl.com`.yellow_trips_csv(
  ```
 SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_unixtime(yellow_trips_csv.dropoff_timestamp) as dropoff_date ,* FROM <USER_NAME>.yellow_trips_csv limit 100
 ```
+
 **Interact with AWS Athena using JDBC Driver**
  - Make sure you have AWS CLI tool is installed - if not please install using the instructions [here](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
  - Make sure you have SQL Workbench installed  if not please install using the instructions [here](http://www.sql-workbench.net/downloads.html)
@@ -69,5 +70,22 @@ SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date,
 FROM <USER_NAME>.yellow_trips_csv limit 100
 ```
 
+**Interact with AWS Athena using AWS QuickSight**
 
+ - Open QuickSight from [here](https://us-east-1.quicksight.aws.amazon.com)
+ - Click Manage Data
+ - Click New Data Set
+ - Select Athena as your data source
+ - Enter the name ‘yellow-trips-csv’ and click ‘Create Data Source’
+ - Select the database with your username , the table ‘yellow_trips_csv’ and then click ‘Edit/Preview Data’
+ - In the table view find the ‘pickup_timestamp’ column and click the ‘#’ (hash) icon just below the column title. Select ‘Date’ from the drop-down list.
+ - Perform the same to the ‘dropoff-timestamp’ column.
+ - In the left side panel ‘Fields’ section find the ‘pickup-date’ column and uncheck it.
+ - Perform the same to the ‘dropoff-date’ column.
+ - Click ‘Save & Visualize’
+
+ - Select ‘Vertical Bar Chart’ from the ‘Visual Types’ Panel
+ - Drag ‘vendor_id’ into ‘Group/Color’ box
+ - Drag ‘rate_code’ into ‘X axis’ box
+ - Drag ‘trip_distance’ into ‘Value’ box, then click the down arrow of the box and select ‘Average’ under the  ‘Aggregate’.
 
