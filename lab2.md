@@ -4,9 +4,8 @@
 
 Create a Database and the Table
  - Open AWS console at https://console.aws.amazon.com/athena/
- - In the query edit box, type ```CREATE DATABASE IF NOT EXISTS your_name``` and click Run Query
- - Enter the following DDL query into the query window
- 
+ - In the query edit box, type ```CREATE DATABASE IF NOT EXISTS your_name``` and click ```Run Query```
+ - Enter the following DDL query into the query window and click ```Run Query```
  ```
 CREATE EXTERNAL TABLE IF NOT EXISTS `vadim@doit-intl.com`.yellow_trips_csv(
          pickup_timestamp BIGINT,
@@ -33,4 +32,8 @@ CREATE EXTERNAL TABLE IF NOT EXISTS `vadim@doit-intl.com`.yellow_trips_csv(
          ROW FORMAT DELIMITED
          FIELDS TERMINATED BY ',' 
          LOCATION 's3://nyc-yellow-trips/csv/'
+```
+ - Paste the following query into your query box, click ```Format Query``` and then ```Click Query```. Note the runtime of the query and amount of data scanned. 
+ ```
+SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_unixtime(yellow_trips_csv.dropoff_timestamp) as dropoff_date ,* FROM <USER_NAME>.yellow_trips_csv limit 100
 ```
