@@ -6,6 +6,7 @@ Create a Database and the Table
  - Open AWS console at https://console.aws.amazon.com/athena/
  - In the query edit box, type ```CREATE DATABASE IF NOT EXISTS your_name``` and click ```Run Query```
  - Enter the following DDL query into the query window and click ```Run Query```
+ 
  ```
 CREATE EXTERNAL TABLE IF NOT EXISTS `vadim@doit-intl.com`.yellow_trips_csv(
          pickup_timestamp BIGINT,
