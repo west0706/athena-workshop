@@ -24,6 +24,17 @@
 
 **Connect to your EMR cluster master**
 
+- **Linux/Mac machines** - Set SSH KeepAlive by default for your user:
+    - Open a terminal
+    - Enter `nano ~/.ssh/config`
+    - Copy the lines below to the file
+     ```
+     Host *
+      ServerAliveInterval 30
+     ```
+    - Save the file to disk
+    - Close the terminal
+
 - When the EMR cluster is ready click the SSH link to the left of the Master public DNS.
 
 - Follow the instructions to SSH into the master instance.
