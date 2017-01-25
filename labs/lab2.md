@@ -4,7 +4,7 @@
 
 **Examine S3 bucket content**
  - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console) and navigate to S3
- - Locate the ```nyc-yellow-trips``` bucket and navigate to ```csv``` folder. Note the amount of files and the format by downloading [sample file](https://#)
+ - Locate the ```nyc-yellow-trips``` bucket and navigate to ```csv``` folder. Note the amount of files and the format by downloading [sample file](https://s3.amazonaws.com/nyc-yellow-trips/csv/trips999999999999.csv)
 
 **Create a Database and the Table**
  - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console)
