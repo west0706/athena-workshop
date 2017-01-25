@@ -66,15 +66,11 @@ CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_parquet(
 **Compare the query performance**
 - Run the following queries one by one and compare the performance while noting the amount of scanned data.
 
-- **Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)**
+- *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 
 ```
 SELECT COUNT(*) FROM <USER_NAME>.yellow_trips_csv;
-```
-```
 SELECT COUNT(*) FROM <USER_NAME>.yellow_trips_parquet;
-```
-```
 SELECT COUNT(*) FROM <USER_NAME>.yellow_trips_orc;
 ```
 
@@ -169,7 +165,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS <USER NAME>.yellow_trips_csv_subset(
 
 - Run the following query on the results table
 
-- **Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)**
+- *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 ```
 select count(*) from <USER NAME>.yellow_trips_csv_subset
 ```
