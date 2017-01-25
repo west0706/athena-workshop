@@ -3,12 +3,12 @@
 *During this lab, you will create a new database using the AWS Management Console, create a new table and run your first query. Then you will connect to your table using MySQLWorkbench as well as visualize the data using AWS QuickSight*
 
 **Create a Database and the Table**
- - Open AWS console at https://console.aws.amazon.com/athena/
+ - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console)
  - In the query edit box, type ```CREATE DATABASE IF NOT EXISTS your_name``` and click ```Run Query```
  - Enter the following DDL query into the query window and click ```Run Query```
  
  ```
-CREATE EXTERNAL TABLE IF NOT EXISTS `vadim'.yellow_trips_csv(
+CREATE EXTERNAL TABLE IF NOT EXISTS your_name.yellow_trips_csv(
          pickup_timestamp BIGINT,
          dropoff_timestamp BIGINT,
          vendor_id STRING,
