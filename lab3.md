@@ -5,7 +5,7 @@
 - Open AWS console at [https://console.aws.amazon.com/athena/](https://console.aws.amazon.com/athena/)
 
 - Enter the following DDL query into the query window
-- **Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)**
+- *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_parquet(
          pickup_timestamp BIGINT,
