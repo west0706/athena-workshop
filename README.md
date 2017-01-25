@@ -36,3 +36,7 @@ At the end of this course, participants will be able to:
 - [Lab 3](labs/lab3.md) - Supported Formats and SerDes
 - [Lab 4](labs/lab4.md) - Partitioning Data
 - [Lab 5](labs/lab5.md) - Converting to Columnar Formats
+
+**Evaluation Form**
+
+ - https://goo.gl/T9BZvy
