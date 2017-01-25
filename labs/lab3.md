@@ -37,7 +37,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_parquet(
 - *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 
 ```
-CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_parquet(
+CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_orc(
          pickup_timestamp BIGINT,
          dropoff_timestamp BIGINT,
          vendor_id STRING,
