@@ -2,13 +2,21 @@
 
 *During this lab, you will create a new database using the AWS Management Console, create a new table and run your first query. Then you will connect to your table using MySQLWorkbench as well as visualize the data using AWS QuickSight*
 
+**Examine S3 bucket content**
+ - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console) and navigate to S3
+ - Locate the ```nyc-yellow-trips``` bucket and navigate to ```csv``` folder. Note the amount of files and the format by downloading [sample file](https://s3.amazonaws.com/nyc-yellow-trips/csv/trips999999999999.csv)
+
 **Create a Database and the Table**
- - Open AWS console at https://console.aws.amazon.com/athena/
- - In the query edit box, type ```CREATE DATABASE IF NOT EXISTS your_name``` and click ```Run Query```
- - Enter the following DDL query into the query window and click ```Run Query```
+ - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console)
+ - First, you will be creating a **database**. In the query edit box, type the following query and click ```Run Query```
  
  ```
-CREATE EXTERNAL TABLE IF NOT EXISTS `vadim'.yellow_trips_csv(
+ CREATE DATABASE IF NOT EXISTS your_name
+ ```
+ - Now, you will create an **external table based on CSV files** by copying the following DDL query into the query window and click ```Run Query```
+ 
+ ```
+CREATE EXTERNAL TABLE IF NOT EXISTS your_name.yellow_trips_csv(
          pickup_timestamp BIGINT,
          dropoff_timestamp BIGINT,
          vendor_id STRING,
@@ -34,7 +42,8 @@ CREATE EXTERNAL TABLE IF NOT EXISTS `vadim'.yellow_trips_csv(
          FIELDS TERMINATED BY ',' 
          LOCATION 's3://nyc-yellow-trips/csv/'
 ```
- - Paste the following query into your query box, click ```Format Query``` and then ```Click Query```. Note the runtime of the query and amount of data scanned. 
+ - Navigate to Athena Catalog Manager and explore the database and table you've created
+ - Finally, you are ready to run your first Athena query! Paste the following query into your query box, click ```Format Query``` and then ```Click Query```. Note the runtime of the query and amount of data scanned. 
 
  ```
 SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_unixtime(yellow_trips_csv.dropoff_timestamp) as dropoff_date ,* FROM <USER_NAME>.yellow_trips_csv limit 100
@@ -47,7 +56,7 @@ SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_uni
  - Start SQL Workbench
  - Click ```Manage Drivers```, create a new driver with the following settings
   - Name: Athena
-  - Library: <Add the path to the Athena JDBC downloaded in the previous step>
+  - Library: Select Athena JDBC Driver JAR (downloaded in the previous step)
   - Classname: com.amazonaws.athena.jdbc.AthenaDriver
   - Sample URL: jdbc:awsathena://athena.us-east-1.amazonaws.com:443
   - Press OK
@@ -56,11 +65,11 @@ SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_uni
   - Name: Athena
   - Driver: Athena
   - URL: jdbc:awsathena://athena.us-east-1.amazonaws.com:443
-  - Username: <Your Access Key>
-  - Password: <Your Secret Key>
+  - Username: ```Your Access Key``` (it is provided in the email we sent you earlier with your IAM user details)
+  - Password: ```Your Secret Key``` (it is provided in the email we sent you earlier with your IAM user details)
   - Extended Properties:
   - Key: s3_staging_dir
-  - Value: s3://<Staging Bucket Name>/
+  - Value: ```s3://your-full-name-jdbc-staging/```
   - Click OK
 - Run the following query in the SQL Workbench query window
 
@@ -76,15 +85,14 @@ FROM <USER_NAME>.yellow_trips_csv limit 100
  - Click Manage Data
  - Click New Data Set
  - Select Athena as your data source
- - Enter the name ```yellow-trips-csv``` and click ```Create Data Source```
+ - Enter the name ```your-name-yellow-trips-csv``` and click ```Create Data Source```
  - Select the database with your username , the table ```yellow_trips_csv``` and then click ```Edit/Preview Data```
- - In the table view find the ```pickup_timestamp``` column and click the ‘#’ (hash) icon just below the column title. Select ```Date``` from the drop-down list.
- - Perform the same to the ```dropoff-timestamp``` column.
- - In the left side panel ```Fields``` section find the ```pickup-date``` column and uncheck it.
- - Perform the same to the ```dropoff-date``` column.
+ - In the table view find the ```pickup_timestamp``` & ```dropoff-timestamp``` columns and click the ‘#’ (hash) icon just below the column title. Select ```Date``` from the drop-down list.
+ - In the left side panel ```Fields``` section find the ```pickup-datetime``` & ```dropoff-date``` columns and uncheck it.
  - Click ```Save & Visualize```
  - Select ```Vertical Bar Chart``` from the ```Visual Types``` Panel
  - Drag ```vendor_id``` into ‘Group/Color’ box
  - Drag ```rate_code``` into ‘X axis’ box
- - Drag ```trip_distance``` into ‘Value’ box, then click the down arrow of the box and select ```Average``` under the  ```Aggregate```.
-
+ - Drag ```trip_distance``` into ‘Value’ box, then click the down arrow of the box and select ```Average``` under the  ```Aggregate```
+ 
+ **You have succesfully completed Lab 1 ;-)**
