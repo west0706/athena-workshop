@@ -134,7 +134,7 @@ limit 10000;
 - Run the DDL query below after replacing `<RESULTS PATH>` with this path  
 - *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 ```
-CREATE EXTERNAL TABLE IF NOT EXISTS <USER NAME>.yellow_trips_csv_subset(
+CREATE EXTERNAL TABLE IF NOT EXISTS <USER NAME>.yellow_trips_csv_query-result(
          pickup_timestamp BIGINT,
          dropoff_timestamp BIGINT,
          vendor_id STRING,
@@ -162,6 +162,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS <USER NAME>.yellow_trips_csv_subset(
 - Run the following query on the results table
 - *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 ```
-select count(*) from <USER NAME>.yellow_trips_csv_subset
+select count(*) from <USER NAME>.yellow_trips_csv_query-result
 ```
 
+**You have sucessully completed Lab 3**
