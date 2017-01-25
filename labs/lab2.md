@@ -85,7 +85,7 @@ FROM <USER_NAME>.yellow_trips_csv limit 100
  - Click Manage Data
  - Click New Data Set
  - Select Athena as your data source
- - Enter the name ```yellow-trips-csv``` and click ```Create Data Source```
+ - Enter the name ```your-name-yellow-trips-csv``` and click ```Create Data Source```
  - Select the database with your username , the table ```yellow_trips_csv``` and then click ```Edit/Preview Data```
  - In the table view find the ```pickup_timestamp``` column and click the ‘#’ (hash) icon just below the column title. Select ```Date``` from the drop-down list.
  - Perform the same to the ```dropoff-timestamp``` column.
