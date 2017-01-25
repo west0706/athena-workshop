@@ -42,6 +42,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS your_name.yellow_trips_csv(
          FIELDS TERMINATED BY ',' 
          LOCATION 's3://nyc-yellow-trips/csv/'
 ```
+ - Navigate to Athena Catalog Manager and explore the database and table you've created
  - Finally, you are ready to run your first Athena query! Paste the following query into your query box, click ```Format Query``` and then ```Click Query```. Note the runtime of the query and amount of data scanned. 
 
  ```
