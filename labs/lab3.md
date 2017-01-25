@@ -165,4 +165,4 @@ CREATE EXTERNAL TABLE IF NOT EXISTS <USER NAME>.yellow_trips_csv_query-result(
 select count(*) from <USER NAME>.yellow_trips_csv_query-result
 ```
 
-**You have sucessully completed Lab 3**
+**You have sucessully completed Lab 3 :-)**
