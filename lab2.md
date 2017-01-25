@@ -4,8 +4,12 @@
 
 **Create a Database and the Table**
  - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console)
- - In the query edit box, type ```CREATE DATABASE IF NOT EXISTS your_name``` and click ```Run Query```
- - Enter the following DDL query into the query window and click ```Run Query```
+ - First, you will be creating a **database**. In the query edit box, type the following query and click ```Run Query```
+ 
+ ```
+ CREATE DATABASE IF NOT EXISTS your_name
+ ```
+ - Now, you will create an **external table based on CSV files** by copying the following DDL query into the query window and click ```Run Query```
  
  ```
 CREATE EXTERNAL TABLE IF NOT EXISTS your_name.yellow_trips_csv(
@@ -34,7 +38,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS your_name.yellow_trips_csv(
          FIELDS TERMINATED BY ',' 
          LOCATION 's3://nyc-yellow-trips/csv/'
 ```
- - Paste the following query into your query box, click ```Format Query``` and then ```Click Query```. Note the runtime of the query and amount of data scanned. 
+ - Finally, you are ready to run your first Athena query! Paste the following query into your query box, click ```Format Query``` and then ```Click Query```. Note the runtime of the query and amount of data scanned. 
 
  ```
 SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_unixtime(yellow_trips_csv.dropoff_timestamp) as dropoff_date ,* FROM <USER_NAME>.yellow_trips_csv limit 100
@@ -86,5 +90,6 @@ FROM <USER_NAME>.yellow_trips_csv limit 100
  - Select ```Vertical Bar Chart``` from the ```Visual Types``` Panel
  - Drag ```vendor_id``` into ‘Group/Color’ box
  - Drag ```rate_code``` into ‘X axis’ box
- - Drag ```trip_distance``` into ‘Value’ box, then click the down arrow of the box and select ```Average``` under the  ```Aggregate```.
-
+ - Drag ```trip_distance``` into ‘Value’ box, then click the down arrow of the box and select ```Average``` under the  ```Aggregate```
+ 
+ You have succesfully completed Lab 1 ;-)
