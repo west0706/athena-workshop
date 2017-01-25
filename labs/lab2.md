@@ -68,7 +68,7 @@ SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_uni
   - Password: ```Your Secret Key```
   - Extended Properties:
   - Key: s3_staging_dir
-  - Value: ```s3://your_name_staging/```
+  - Value: ```s3://your-full-name-jdbc-staging/```
   - Click OK
 - Run the following query in the SQL Workbench query window
 
