@@ -88,7 +88,7 @@ FROM <USER_NAME>.yellow_trips_csv limit 100
  - Enter the name ```your-name-yellow-trips-csv``` and click ```Create Data Source```
  - Select the database with your username , the table ```yellow_trips_csv``` and then click ```Edit/Preview Data```
  - In the table view find the ```pickup_timestamp``` & ```dropoff-timestamp``` columns and click the ‘#’ (hash) icon just below the column title. Select ```Date``` from the drop-down list.
- - In the left side panel ```Fields``` section find the ```pickup-datetime``` & ```dropoff-date``` columns and uncheck it.
+ - In the left side panel ```Fields``` section find the ```pickup-datetime``` & ```dropoff-datetime``` columns and uncheck it.
  - Click ```Save & Visualize```
  - Select ```Vertical Bar Chart``` from the ```Visual Types``` Panel
  - Drag ```vendor_id``` into ‘Group/Color’ box
