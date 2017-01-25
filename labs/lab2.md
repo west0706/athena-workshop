@@ -65,8 +65,8 @@ SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_uni
   - Name: Athena
   - Driver: Athena
   - URL: jdbc:awsathena://athena.us-east-1.amazonaws.com:443
-  - Username: ```Your Access Key```
-  - Password: ```Your Secret Key```
+  - Username: ```Your Access Key``` (it is provided in the email we sent you earlier with your IAM user details)
+  - Password: ```Your Secret Key``` (it is provided in the email we sent you earlier with your IAM user details)
   - Extended Properties:
   - Key: s3_staging_dir
   - Value: ```s3://your-full-name-jdbc-staging/```
