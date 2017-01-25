@@ -43,7 +43,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS your_name.yellow_trips_csv(
          LOCATION 's3://nyc-yellow-trips/csv/'
 ```
  - Navigate to Athena Catalog Manager and explore the database and table you've created
- - Finally, you are ready to run your first Athena query! Paste the following query into your query box, click ```Format Query``` and then ```Click Query```. Note the runtime of the query and amount of data scanned. 
+ - Finally, you are ready to run your first Athena query! Paste the following query into your query box, click ```Format Query``` and then ```Click Run Query```. Note the runtime of the query and amount of data scanned. 
 
  ```
 SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_unixtime(yellow_trips_csv.dropoff_timestamp) as dropoff_date ,* FROM <USER_NAME>.yellow_trips_csv limit 100
@@ -88,11 +88,11 @@ FROM <USER_NAME>.yellow_trips_csv limit 100
  - Enter the name ```your-name-yellow-trips-csv``` and click ```Create Data Source```
  - Select the database with your username , the table ```yellow_trips_csv``` and then click ```Edit/Preview Data```
  - In the table view find the ```pickup_timestamp``` & ```dropoff-timestamp``` columns and click the ‘#’ (hash) icon just below the column title. Select ```Date``` from the drop-down list.
- - In the left side panel ```Fields``` section find the ```pickup-datetime``` & ```dropoff-date``` columns and uncheck it.
+ - In the left side panel ```Fields``` section find the ```pickup-datetime``` & ```dropoff-datetime``` columns and uncheck it.
  - Click ```Save & Visualize```
  - Select ```Vertical Bar Chart``` from the ```Visual Types``` Panel
  - Drag ```vendor_id``` into ‘Group/Color’ box
  - Drag ```rate_code``` into ‘X axis’ box
  - Drag ```trip_distance``` into ‘Value’ box, then click the down arrow of the box and select ```Average``` under the  ```Aggregate```
  
- **You have succesfully completed Lab 1 ;-)**
+ **You have succesfully completed Lab 2 ;-)**

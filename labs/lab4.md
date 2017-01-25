@@ -14,8 +14,7 @@
 - While the cluster is being provisioned and started continue to the next step.
 
 **Create an S3 bucket**
-- In a new browser window/tab open S3 console with this link
-
+- In a new browser window/tab open S3 console with [this link](https://console.aws.amazon.com/s3/home?region=us-east-1)
 - Click Create Bucket
 - Enter your username as the Bucket Name
 - Select ‘US Standard’ as the Region
