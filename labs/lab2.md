@@ -95,4 +95,4 @@ FROM <USER_NAME>.yellow_trips_csv limit 100
  - Drag ```rate_code``` into ‘X axis’ box
  - Drag ```trip_distance``` into ‘Value’ box, then click the down arrow of the box and select ```Average``` under the  ```Aggregate```
  
- **You have succesfully completed Lab 1 ;-)**
+ **You have succesfully completed Lab 2 ;-)**
