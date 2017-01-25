@@ -8,9 +8,28 @@
 - **Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)**
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_parquet(
-pickup_timestamp BIGINT, dropoff_timestamp BIGINT, vendor_id STRING, pickup_datetime TIMESTAMP, dropoff_datetime TIMESTAMP, pickup_longitude FLOAT, pickup_latitude FLOAT, dropoff_longitude FLOAT, dropoff_latitude FLOAT, rate_code STRING, passenger_count INT, trip_distance FLOAT, payment_type STRING, fare_amount FLOAT, extra FLOAT, mta_tax FLOAT, imp_surcharge FLOAT, tip_amount FLOAT, tolls_amount FLOAT, total_amount FLOAT, store_and_fwd_flag STRING)
-STORED AS PARQUET
-LOCATION 's3://nyc-yellow-trips/parquet/';
+         pickup_timestamp BIGINT,
+         dropoff_timestamp BIGINT,
+         vendor_id STRING,
+         pickup_datetime TIMESTAMP,
+         dropoff_datetime TIMESTAMP,
+         pickup_longitude FLOAT,
+         pickup_latitude FLOAT,
+         dropoff_longitude FLOAT,
+         dropoff_latitude FLOAT,
+         rate_code STRING,
+         passenger_count INT,
+         trip_distance FLOAT,
+         payment_type STRING,
+         fare_amount FLOAT,
+         extra FLOAT,
+         mta_tax FLOAT,
+         imp_surcharge FLOAT,
+         tip_amount FLOAT,
+         tolls_amount FLOAT,
+         total_amount FLOAT,
+         store_and_fwd_flag STRING
+) STORED AS PARQUET LOCATION 's3://nyc-yellow-trips/parquet/';
 ```
 
 **Create External Table from ORC files**
@@ -20,9 +39,28 @@ LOCATION 's3://nyc-yellow-trips/parquet/';
 
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_parquet(
-pickup_timestamp BIGINT, dropoff_timestamp BIGINT, vendor_id STRING, pickup_datetime TIMESTAMP, dropoff_datetime TIMESTAMP, pickup_longitude FLOAT, pickup_latitude FLOAT, dropoff_longitude FLOAT, dropoff_latitude FLOAT, rate_code STRING, passenger_count INT, trip_distance FLOAT, payment_type STRING, fare_amount FLOAT, extra FLOAT, mta_tax FLOAT, imp_surcharge FLOAT, tip_amount FLOAT, tolls_amount FLOAT, total_amount FLOAT, store_and_fwd_flag STRING)
-STORED AS ORC
-LOCATION 's3://nyc-yellow-trips/orc/';
+         pickup_timestamp BIGINT,
+         dropoff_timestamp BIGINT,
+         vendor_id STRING,
+         pickup_datetime TIMESTAMP,
+         dropoff_datetime TIMESTAMP,
+         pickup_longitude FLOAT,
+         pickup_latitude FLOAT,
+         dropoff_longitude FLOAT,
+         dropoff_latitude FLOAT,
+         rate_code STRING,
+         passenger_count INT,
+         trip_distance FLOAT,
+         payment_type STRING,
+         fare_amount FLOAT,
+         extra FLOAT,
+         mta_tax FLOAT,
+         imp_surcharge FLOAT,
+         tip_amount FLOAT,
+         tolls_amount FLOAT,
+         total_amount FLOAT,
+         store_and_fwd_flag STRING
+) STORED AS ORC LOCATION 's3://nyc-yellow-trips/orc/';
 ```
 
 **Create External Table from PARQUET files**
@@ -44,10 +82,30 @@ SELECT COUNT(*) FROM <USER_NAME>.yellow_trips_orc;
 - **Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)**
 
 ```
-CREATE EXTERNAL TABLE IF NOT EXISTS <USER NAME>.elb_logs_raw_native ( request_timestamp string, elb_name string, request_ip string, request_port int, backend_ip string, backend_port int, request_processing_time double, backend_processing_time double, client_response_time double, elb_response_code string, backend_response_code string, received_bytes bigint, sent_bytes bigint, request_verb string, url string, protocol string, user_agent string, ssl_cipher string, ssl_protocol string )
+CREATE EXTERNAL TABLE IF NOT EXISTS <USER NAME>.elb_logs_raw_native (
+         request_timestamp string,
+         elb_name string,
+         request_ip string,
+         request_port int,
+         backend_ip string,
+         backend_port int,
+         request_processing_time double,
+         backend_processing_time double,
+         client_response_time double,
+         elb_response_code string,
+         backend_response_code string,
+         received_bytes bigint,
+         sent_bytes bigint,
+         request_verb string,
+         url string,
+         protocol string,
+         user_agent string,
+         ssl_cipher string,
+         ssl_protocol string 
+) 
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
-WITH SERDEPROPERTIES ( 'serialization.format' = '1','input.regex' = '([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*):([0-9]*) ([.0-9]*) ([.0-9]*) ([.0-9]*) (-|[0-9]*) (-|[0-9]*) ([-0-9]*) ([-0-9]*) \\\"([^ ]*) ([^ ]*) (- |[^ ]*)\\\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*)$' ) 
-LOCATION 's3://athena-examples/elb/raw/';
+WITH SERDEPROPERTIES (
+         'serialization.format' = '1','input.regex' = '([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*):([0-9]*) ([.0-9]*) ([.0-9]*) ([.0-9]*) (-|[0-9]*) (-|[0-9]*) ([-0-9]*) ([-0-9]*) \\\"([^ ]*) ([^ ]*) (- |[^ ]*)\\\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*)$' ) LOCATION 's3://athena-examples/elb/raw/';
 ```
 
 - When finished run the following query
@@ -76,9 +134,28 @@ limit 10000;
 - **Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)**
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS <USER NAME>.yellow_trips_csv_subset(
-pickup_timestamp BIGINT, dropoff_timestamp BIGINT, vendor_id STRING, pickup_datetime TIMESTAMP, dropoff_datetime TIMESTAMP, pickup_longitude FLOAT, pickup_latitude FLOAT, dropoff_longitude FLOAT, dropoff_latitude FLOAT, rate_code STRING, passenger_count INT, trip_distance FLOAT, payment_type STRING, fare_amount FLOAT, extra FLOAT, mta_tax FLOAT, imp_surcharge FLOAT, tip_amount FLOAT, tolls_amount FLOAT, total_amount FLOAT, store_and_fwd_flag STRING)
-ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
-LOCATION '<RESULTS PATH>';
+         pickup_timestamp BIGINT,
+         dropoff_timestamp BIGINT,
+         vendor_id STRING,
+         pickup_datetime TIMESTAMP,
+         dropoff_datetime TIMESTAMP,
+         pickup_longitude FLOAT,
+         pickup_latitude FLOAT,
+         dropoff_longitude FLOAT,
+         dropoff_latitude FLOAT,
+         rate_code STRING,
+         passenger_count INT,
+         trip_distance FLOAT,
+         payment_type STRING,
+         fare_amount FLOAT,
+         extra FLOAT,
+         mta_tax FLOAT,
+         imp_surcharge FLOAT,
+         tip_amount FLOAT,
+         tolls_amount FLOAT,
+         total_amount FLOAT,
+         store_and_fwd_flag STRING
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LOCATION '<RESULTS PATH>';
 ```
 
 - Run the following query on the results table
