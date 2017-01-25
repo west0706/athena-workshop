@@ -63,17 +63,25 @@ CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_parquet(
 ) STORED AS ORC LOCATION 's3://nyc-yellow-trips/orc/';
 ```
 
-**Create External Table from PARQUET files**
-- Run the following queries one by one and compare the performance
+**Compare the query performance**
+- Run the following queries one by one and compare the performance while noting the amount of scanned data.
 
 - **Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)**
 
 ```
 SELECT COUNT(*) FROM <USER_NAME>.yellow_trips_csv;
-
+```
+```
 SELECT COUNT(*) FROM <USER_NAME>.yellow_trips_parquet;
-
+```
+```
 SELECT COUNT(*) FROM <USER_NAME>.yellow_trips_orc;
+```
+
+```
+SELECT max(passenger_count) FROM <USER_NAME>.yellow_trips_csv WHERE vendor_id <> 'VTS';
+SELECT max(passenger_count) FROM <USER_NAME>.yellow_trips_parquet WHERE vendor_id <> 'VTS';
+SELECT max(passenger_count) FROM <USER_NAME>.yellow_trips_orc WHERE vendor_id <> 'VTS';
 ```
 
 **Create External Table from text files with custom format**
