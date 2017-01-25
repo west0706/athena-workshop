@@ -55,7 +55,7 @@ SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_uni
  - Start SQL Workbench
  - Click ```Manage Drivers```, create a new driver with the following settings
   - Name: Athena
-  - Library: <Add the path to the Athena JDBC downloaded in the previous step>
+  - Library: Select Athena JDBC Driver JAR (downloaded in the previous step)
   - Classname: com.amazonaws.athena.jdbc.AthenaDriver
   - Sample URL: jdbc:awsathena://athena.us-east-1.amazonaws.com:443
   - Press OK
@@ -64,11 +64,11 @@ SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_uni
   - Name: Athena
   - Driver: Athena
   - URL: jdbc:awsathena://athena.us-east-1.amazonaws.com:443
-  - Username: <Your Access Key>
-  - Password: <Your Secret Key>
+  - Username: ```Your Access Key```
+  - Password: ```Your Secret Key```
   - Extended Properties:
   - Key: s3_staging_dir
-  - Value: s3://<Staging Bucket Name>/
+  - Value: ```s3://your_name_staging/```
   - Click OK
 - Run the following query in the SQL Workbench query window
 
