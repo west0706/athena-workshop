@@ -34,8 +34,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_parquet(
 
 **Create External Table from ORC files**
 - Enter the following DDL query into the query window
-
-- **Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)**
+- *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_parquet(
@@ -65,7 +64,6 @@ CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_parquet(
 
 **Compare the query performance**
 - Run the following queries one by one and compare the performance while noting the amount of scanned data.
-
 - *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 
 ```
@@ -82,8 +80,7 @@ SELECT max(passenger_count) FROM <USER_NAME>.yellow_trips_orc WHERE vendor_id <>
 
 **Create External Table from text files with custom format**
 - Run the following DDL query
-
-- **Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)**
+- *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS <USER NAME>.elb_logs_raw_native (
@@ -121,10 +118,9 @@ SELECT * FROM <USERNAME>.elb_logs_raw_native WHERE elb_response_code = '200' LIM
 
 **Create External Table from results of previous queries**
 - Click the ‘Settings’ button at the top right.
-
 - Note the URL from the ‘Query results location’ text box and find the bucket in the S3
 - Run the following query
-- **Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)**
+- *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 
 ```
 SELECT * 
@@ -136,7 +132,7 @@ limit 10000;
 
 - You can copy the results into any S3 bucket for re-use or use from this location.
 - Run the DDL query below after replacing `<RESULTS PATH>` with this path  
-- **Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)**
+- *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS <USER NAME>.yellow_trips_csv_subset(
          pickup_timestamp BIGINT,
@@ -164,7 +160,6 @@ CREATE EXTERNAL TABLE IF NOT EXISTS <USER NAME>.yellow_trips_csv_subset(
 ```
 
 - Run the following query on the results table
-
 - *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 ```
 select count(*) from <USER NAME>.yellow_trips_csv_subset
