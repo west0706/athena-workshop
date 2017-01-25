@@ -1,7 +1,7 @@
 #Lab 3 - Supported Formats and SerDes#
 *During this lab you will explore ways to define external tables using various file formats.*
 
-**Create External Table from CSV files**
+**Create External Table from Parquet files**
 - Open AWS console at [https://console.aws.amazon.com/athena/](https://console.aws.amazon.com/athena/)
 
 - Enter the following DDL query into the query window
