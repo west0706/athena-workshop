@@ -113,7 +113,7 @@ LOCATION 's3://athena-examples/elb/raw/';
 - When finished run the following query
 
 ```
-SELECT * FROM <USERNAME>.elb_logs_raw_native WHERE elb_response_code = '200' LIMIT 100;
+SELECT * FROM <USERNAME>.elb_logs_raw_native WHERE elb_response_code <> '200' LIMIT 100;
 ```
 
 **Create External Table from results of previous queries**
