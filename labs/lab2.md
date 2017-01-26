@@ -2,8 +2,11 @@
 
 *During this lab, you will create a new database using the AWS Management Console, create a new table and run your first query. Then you will connect to your table using MySQLWorkbench as well as visualize the data using AWS QuickSight*
 
+---------
+---------
 ** **Throughout the lab please make sure you are using US-East region (N.Virginia)** **
-
+---------
+---------
 
 **Examine S3 bucket content**
  - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console) and navigate to S3
@@ -90,8 +93,8 @@ FROM <USER_NAME>.yellow_trips_csv limit 100
  - Select Athena as your data source
  - Enter the name ```your-name-yellow-trips-csv``` and click ```Create Data Source```
  - Select the database with your username , the table ```yellow_trips_csv``` and then click ```Edit/Preview Data```
- - In the table view find the ```pickup_timestamp``` & ```dropoff-timestamp``` columns and click the ‘#’ (hash) icon just below the column title. Select ```Date``` from the drop-down list.
- - In the left side panel ```Fields``` section find the ```pickup-datetime``` & ```dropoff-datetime``` columns and uncheck it.
+ - In the table view find the ```pickup_timestamp``` & ```dropoff_timestamp``` columns and click the ‘#’ (hash) icon just below the column title. Select ```Date``` from the drop-down list.
+ - In the left side panel ```Fields``` section find the ```pickup_datetime``` & ```dropoff_datetime``` columns and uncheck it.
  - Click ```Save & Visualize```
  - Select ```Vertical Bar Chart``` from the ```Visual Types``` Panel
  - Drag ```vendor_id``` into ‘Group/Color’ box

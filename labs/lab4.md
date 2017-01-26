@@ -1,8 +1,11 @@
 #Lab 4 - Partitioning Data#
 *During this lab you will learn how to create and query partitioned tables.*
 
+---------
+---------
 ** **Throughout the lab please make sure you are using US-East region (N.Virginia)** **
-
+---------
+---------
 **Create a Spark EMR cluster**
 - Follow the instructions [at this link](http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-access-ssh.html) to create the SSH key you will require later
 
