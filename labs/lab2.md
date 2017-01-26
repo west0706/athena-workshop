@@ -2,6 +2,9 @@
 
 *During this lab, you will create a new database using the AWS Management Console, create a new table and run your first query. Then you will connect to your table using MySQLWorkbench as well as visualize the data using AWS QuickSight*
 
+** **Throughout the lab please make sure you are using US-East region (N.Virginia)** **
+
+
 **Examine S3 bucket content**
  - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console) and navigate to S3
  - Locate the ```nyc-yellow-trips``` bucket and navigate to ```csv``` folder. Note the amount of files and the format by downloading [sample file](https://s3.amazonaws.com/nyc-yellow-trips/csv/trips999999999999.csv)

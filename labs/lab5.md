@@ -2,6 +2,8 @@
 *During this lab you will learn how to convert row based file formats like CSV and JSON into columnar formats such as ORC and PARQUET 
 in real time as they are fed through a Kinesis Stream*
 
+** **Throughout the lab please make sure you are using US-East region (N.Virginia)** **
+
 **Create a Kinesis Stream**
 
 - Open the Kinesis Console at [this link](https://console.aws.amazon.com/kinesis/home?region=us-east-1#/streams/create)
