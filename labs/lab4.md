@@ -71,7 +71,7 @@ hiveContext.sql("CREATE EXTERNAL TABLE IF NOT EXISTS yellow_trips_csv(" +
 
 - Read the data from the CSV hive table
 ```
-val data=hiveContext.sql("select *,date_sub(from_unixtime(pickup_timestamp),0) as pickup_date from yellow_trips_csv limit 10000")
+val data=hiveContext.sql("select *,date_sub(from_unixtime(pickup_timestamp),0) as pickup_date from yellow_trips_csv limit 100")
 ```
 
 - Perform the conversion. **Replace `<BUCKET NAME>` with the bucket you created.**

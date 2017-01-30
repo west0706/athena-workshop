@@ -123,7 +123,8 @@ SELECT * FROM <USERNAME>.elb_logs_raw_native WHERE elb_response_code <> '200' LI
 
 **Create External Table from results of previous queries**
 - Click the ‘Settings’ button at the top right.
-- Note the URL from the ‘Query results location’ text box and find the bucket in the S3
+
+- Set the URL in the ‘Query results location’ by adding your username to as a sub-folder to the bucket and find the bucket in the S3 console
 - Run the following query
 - *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 
@@ -133,9 +134,9 @@ FROM <USER NAME>.yellow_trips_csv
 limit 10000;
 ```
 
-- Look for the results of the query within the S3 bucket. (path should be similar to .../Unsaved/2017/01/24/aa9...fbb.csv)
+- Look for the results of the query within the S3 bucket and the older you added in the settings box. (path should be similar to .../Unsaved/2017/01/24/aa9...fbb.csv)
 
-- You can copy the results into any S3 bucket for re-use or use from this location.
+- Copy the results into another sub-folder under your username in the S3 bucket for re-use.
 - Run the DDL query below after replacing `<RESULTS PATH>` with this path  
 - *Remember to replace `<USER_NAME>` with your AWS username. (e.g. srfrnk_doit)*
 ```
