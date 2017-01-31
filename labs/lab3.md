@@ -1,11 +1,10 @@
 #Lab 3 - Supported Formats and SerDes#
 *During this lab you will explore ways to define external tables using various file formats.*
 
----------
----------
-** **Throughout the lab please make sure you are using US-East region (N.Virginia)** **
----------
----------
+**^^^Please make sure your AWS Management Console is set on US-East Region (N.Virginia)^^^**
+
+![alt tag](https://github.com/doitintl/athena-workshop/blob/master/images/region.png)
+
 **Create External Table from Parquet files**
 - Open AWS console at [https://console.aws.amazon.com/athena/](https://console.aws.amazon.com/athena/)
 
