@@ -39,7 +39,7 @@ if __name__ == "__main__":
     sqlContext = HiveContext(sc)
 
     # Define an external hive table from the PARQUET files stored in S3 to be used to retrieve the schema of the data.
-    # Otherwise we would have been forced to hard-code the schema in here.
+    # The schema will be used to parse the messages coming from the Kinesis stream and thus must match it.
     sqlContext.sql("CREATE EXTERNAL TABLE IF NOT EXISTS yellow_trips_schema(" +
                    "pickup_timestamp BIGINT, dropoff_timestamp BIGINT, vendor_id STRING, pickup_datetime TIMESTAMP, dropoff_datetime TIMESTAMP, pickup_longitude FLOAT, pickup_latitude FLOAT, dropoff_longitude FLOAT, dropoff_latitude FLOAT, rate_code STRING, passenger_count INT, trip_distance FLOAT, payment_type STRING, fare_amount FLOAT, extra FLOAT, mta_tax FLOAT, imp_surcharge FLOAT, tip_amount FLOAT, tolls_amount FLOAT, total_amount FLOAT, store_and_fwd_flag STRING) " +
                    "STORED AS parquet " +
