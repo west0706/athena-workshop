@@ -19,7 +19,7 @@
  - Now, you will create an **external table based on CSV files** by copying the following DDL query into the query window and click ```Run Query```
  
  ```
-CREATE EXTERNAL TABLE IF NOT EXISTS your_name.yellow_trips_csv(
+CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_csv(
          pickup_timestamp BIGINT,
          dropoff_timestamp BIGINT,
          vendor_id STRING,
