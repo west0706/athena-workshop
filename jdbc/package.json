@@ -1,0 +1,15 @@
+{
+  "name": "jdbc-query",
+  "version": "1.0.0",
+  "main": "query.js",
+  "scripts": {
+    "start": "node query.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "jdbc": "^0.4.0",
+    "moment": "^2.17.1"
+  }
+}
