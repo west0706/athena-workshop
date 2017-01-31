@@ -2,11 +2,9 @@
 
 *During this lab, you will create a new database using the AWS Management Console, create a new table and run your first query. Then you will connect to your table using MySQLWorkbench as well as visualize the data using AWS QuickSight*
 
----------
----------
-** **Throughout the lab please make sure you are using US-East region (N.Virginia)** **
----------
----------
+**^^^Please make sure your AWS Management Console is set on US-East Region (N.Virginia)^^^**
+
+![alt tag](https://github.com/doitintl/athena-workshop/blob/master/images/region.png)
 
 **Examine S3 bucket content**
  - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console) and navigate to S3
@@ -15,14 +13,16 @@
 **Create a Database and the Table**
  - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console)
  - First, you will be creating a **database**. In the query edit box, type the following query and click ```Run Query```
+ - *Remember to replace `<USER_NAME>` with your AWS username. (e.g. shaharf)*
+
  
  ```
- CREATE DATABASE IF NOT EXISTS your_name
+ CREATE DATABASE IF NOT EXISTS <USER_NAME>
  ```
  - Now, you will create an **external table based on CSV files** by copying the following DDL query into the query window and click ```Run Query```
  
  ```
-CREATE EXTERNAL TABLE IF NOT EXISTS your_name.yellow_trips_csv(
+CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_csv(
          pickup_timestamp BIGINT,
          dropoff_timestamp BIGINT,
          vendor_id STRING,
