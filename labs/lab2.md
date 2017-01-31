@@ -15,7 +15,7 @@
  - First, you will be creating a **database**. In the query edit box, type the following query and click ```Run Query```
  
  ```
- CREATE DATABASE IF NOT EXISTS your_name
+ CREATE DATABASE IF NOT EXISTS <USER_NAME>
  ```
  - Now, you will create an **external table based on CSV files** by copying the following DDL query into the query window and click ```Run Query```
  
