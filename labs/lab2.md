@@ -2,9 +2,7 @@
 
 *During this lab, you will create a new database using the AWS Management Console, create a new table and run your first query. Then you will connect to your table using MySQLWorkbench as well as visualize the data using AWS QuickSight*
 
----------
-**Please make sure you are using US-East region (N.Virginia)**
----------
+* --- Please make sure you are using US-East region (N.Virginia) ---*
 
 **Examine S3 bucket content**
  - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console) and navigate to S3
@@ -13,6 +11,8 @@
 **Create a Database and the Table**
  - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console)
  - First, you will be creating a **database**. In the query edit box, type the following query and click ```Run Query```
+ - *Remember to replace `<USER_NAME>` with your AWS username. (e.g. shaharf)*
+
  
  ```
  CREATE DATABASE IF NOT EXISTS <USER_NAME>
