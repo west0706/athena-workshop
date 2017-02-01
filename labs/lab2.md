@@ -14,7 +14,6 @@
  - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console)
  - First, you will be creating a **database**. In the query edit box, type the following query and click ```Run Query```
  - *Remember to replace `<USER_NAME>` with your AWS username. (e.g. shaharf)*
-
  
  ```
  CREATE DATABASE IF NOT EXISTS <USER_NAME>
@@ -101,4 +100,54 @@ FROM <USER_NAME>.yellow_trips_csv limit 100
  - Drag ```rate_code``` into ‘X axis’ box
  - Drag ```trip_distance``` into ‘Value’ box, then click the down arrow of the box and select ```Average``` under the  ```Aggregate```
  
- **You have succesfully completed Lab 2 ;-)**
+**Interact with Athena from a NodeJS application using JDBC**
+- Open AWS console at [https://console.aws.amazon.com/athena/](https://console.aws.amazon.com/athena/)
+
+- Enter the following DDL query into the query window
+- *Remember to replace `<USER_NAME>` with your AWS username. (e.g. shaharf)*
+```
+CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_parquet(
+         pickup_timestamp BIGINT,
+         dropoff_timestamp BIGINT,
+         vendor_id STRING,
+         pickup_datetime TIMESTAMP,
+         dropoff_datetime TIMESTAMP,
+         pickup_longitude FLOAT,
+         pickup_latitude FLOAT,
+         dropoff_longitude FLOAT,
+         dropoff_latitude FLOAT,
+         rate_code STRING,
+         passenger_count INT,
+         trip_distance FLOAT,
+         payment_type STRING,
+         fare_amount FLOAT,
+         extra FLOAT,
+         mta_tax FLOAT,
+         imp_surcharge FLOAT,
+         tip_amount FLOAT,
+         tolls_amount FLOAT,
+         total_amount FLOAT,
+         store_and_fwd_flag STRING
+) STORED AS PARQUET LOCATION 's3://nyc-yellow-trips/parquet/';
+```
+
+- Make sure you have NodeJS and NPM installed on your machine. If not install from [here](https://nodejs.org/en/download/).
+ 
+- Clone the workshop git repository into your machine and install:
+```
+git clone https://github.com/doitintl/athena-workshop.git
+cd athena-workshop/jdbc
+npm i
+```
+
+- Run the application to query Athena from NodeJS and get the daily total fare paid:
+```
+npm start
+```
+
+- After about 5 seconds the application should terminate after having printed output such as this:
+```
+Results: [{"vendor":"VTS","total":66.75000190734863},{"vendor":"CMT","total":14.200000286102295},{"vendor":"DDS","total":6.300000190734863}]
+```
+
+**You have successfully completed Lab 2 ;-)**
