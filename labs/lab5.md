@@ -42,8 +42,6 @@ export AWS_SECRET_KEY=<your-secret-key>
 ```
 spark-submit --packages org.apache.spark:spark-streaming-kinesis-asl_2.11:2.1.0 generate.py
 ```
-- Wait until the job terminates.
-
 - Run the job to accept Kinesis Stream messages and save those into PARQUET files at your S3 bucket
 ```
 spark-submit --packages org.apache.spark:spark-streaming-kinesis-asl_2.11:2.1.0 job.py
