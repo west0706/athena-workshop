@@ -8,15 +8,6 @@
 **Create a Spark EMR cluster**
 - Follow the instructions [at this link](http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-access-ssh.html) to create the SSH key you will require later
 
-- Open EMR console [at this link](https://console.aws.amazon.com/elasticmapreduce/home?region=us-east-1)
-- Click Create Cluster
-- Set the cluster name to `<USERNAME>_spark`
-- Select `Spark` in the `Applications` section
-- Set the instance type to `c4.large`
-- Select the EC2 Key Pair you created in the previous step.
-- Click Create Cluster
-- While the cluster is being provisioned and started continue to the next step.
-
 **Create an S3 bucket**
 - In a new browser window/tab open S3 console with [this link](https://console.aws.amazon.com/s3/home?region=us-east-1)
 - Click Create Bucket
