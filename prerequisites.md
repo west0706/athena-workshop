@@ -13,3 +13,4 @@ Please perform the following:
  vagrant init ubuntu/trusty64
  vagrant up --provider virtualbox
  ```
+- Within the virtual machine make sure you install NodeJS and NPM from [here](https://nodejs.org/en/download/)

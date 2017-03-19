@@ -11,6 +11,14 @@
 
 - Locate the ```nyc-yellow-trips``` bucket and navigate to ```csv``` folder. Note the amount of files and the format by downloading [sample file](https://s3.amazonaws.com/nyc-yellow-trips/csv/trips999999999999.csv)
 
+**Create S3 bucket**
+- Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console) and navigate to S3
+
+- Click 'Create Bucket'
+- Enter 'Bucket Name' - e.g. <USER_NAME>-athena
+- Choose Region 'US Standard'
+- Click 'Create'
+
 **Create a Database and the Table**
 - Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console)
 
@@ -77,7 +85,7 @@ SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_uni
 - Password: ```Your Secret Key``` (it is provided in the email we sent you earlier with your IAM user details)
 - Extended Properties:
 - Key: s3_staging_dir
-- Value: ```s3://your-full-name-jdbc-staging/```
+- Value: ```s3://<USER_NAME>-jdbc-staging/```
 - Click OK
 - Run the following query in the SQL Workbench query window
 
@@ -94,7 +102,7 @@ FROM <USER_NAME>.yellow_trips_csv limit 100
 - Click Manage Data
 - Click New Data Set
 - Select Athena as your data source
-- Enter the name ```your-name-yellow-trips-csv``` and click ```Create Data Source```
+- Enter the name ```<USER_NAME>-yellow-trips-csv``` and click ```Create Data Source```
 - Select the database with your username , the table ```yellow_trips_csv``` and then click ```Edit/Preview Data```
 - Open the 'Tables' panel and click 'Switch to custom SQL tool'
 - Enter any name for the Query and copy the following SQL into the 'Custom SQL' text box
@@ -102,7 +110,7 @@ FROM <USER_NAME>.yellow_trips_csv limit 100
 SELECT *, 
     greatest(0,trip_distance*3600.0/(dropoff_timestamp-pickup_timestamp)) as avg_speed,
     hour(from_unixtime(pickup_timestamp)) as hour
-FROM srfrnk.yellow_trips_parquet
+FROM <USER_NAME>.yellow_trips_parquet
 WHERE pickup_timestamp is not null and pickup_timestamp is not null and pickup_timestamp<>dropoff_timestamp
 ```
 - Click 'Finish'
@@ -143,7 +151,8 @@ CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_parquet(
 ```
 
 - Make sure you have NodeJS and NPM installed on your machine. If not install from [here](https://nodejs.org/en/download/).
- 
+
+- Set environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to your AWS key and secret. (Received by Email)
 - Clone the workshop git repository into your machine and install:
 ```
 git clone https://github.com/doitintl/athena-workshop.git
