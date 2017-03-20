@@ -110,7 +110,7 @@ FROM <USER_NAME>.yellow_trips_csv limit 100
 SELECT *, 
     greatest(0,trip_distance*3600.0/(dropoff_timestamp-pickup_timestamp)) as avg_speed,
     hour(from_unixtime(pickup_timestamp)) as hour
-FROM <USER_NAME>.yellow_trips_parquet
+FROM <USER_NAME>.yellow_trips_csv
 WHERE pickup_timestamp is not null and pickup_timestamp is not null and pickup_timestamp<>dropoff_timestamp
 ```
 - Click 'Finish'
