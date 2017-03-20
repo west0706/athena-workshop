@@ -14,4 +14,4 @@ Please perform the following:
  vagrant up --provider virtualbox
  ```
 - Within the virtual machine make sure you install NodeJS and NPM from [here](https://nodejs.org/en/download/)
-- Within the virtual machine make sure you install Python 2.7
+- Within the virtual machine make sure you install Python 2.7 [here](https://www.python.org/downloads/)
