@@ -150,7 +150,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS <USER_NAME>.yellow_trips_parquet(
 ) STORED AS PARQUET LOCATION 's3://nyc-yellow-trips/parquet/';
 ```
 
-- Make sure you have Python 2.7, NodeJS and NPM installed on your machine. If not install from [here](https://nodejs.org/en/download/).
+- Make sure you have Python 2.7, NodeJS and NPM installed on your machine. If not install from [here](https://nodejs.org/en/download/) and [here](https://www.python.org/downloads/).
 
 - Set environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to your AWS key and secret. (Received by Email)
 - Clone the workshop git repository into your machine and install:
