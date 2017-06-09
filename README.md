@@ -20,7 +20,7 @@
 ### 설치할 프로그램
 **AWS CLI** PC에 AWS CLI (Command Line Interface)가 설치되어 있어야합니다. CLI를 사용하여 개체를 S3 웹 사이트 버킷에 복사합니다. [AWS CLI 시작하기](http://docs.aws.amazon.com/ko_kr/cli/latest/userguide/installing.html) 안내서에 따라 시스템에 CLI를 설치 및 구성하십시오. 
 
-**SQL WorkBench**(http://www.sql-workbench.net/downloads.html)를 PC에 설치하여 Athena용 JDBC(https://s3.amazonaws.com/athena-downloads/drivers/AthenaJDBC41-1.0.0.jar)를 사용할 수 있어야 합니다.
+**SQL WorkBench** PC에 [SQL WorkBench](http://www.sql-workbench.net/downloads.html)를 설치하고, [Athena용 JDBC](https://s3.amazonaws.com/athena-downloads/drivers/AthenaJDBC41-1.0.0.jar)를 사용할 수 있어야 합니다.
 
 ## 실습 과정 
 - [Lab 1 Athena 사용해보기](labs/lab2.md) - Amazon Quicksight 활용
