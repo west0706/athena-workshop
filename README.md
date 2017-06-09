@@ -1,42 +1,26 @@
-# AWS Athena Hands-On Workshop
-This 1-day course provides hands-on skills in ingesting, analyzing, transforming and visualizing data using AWS Athena and getting the best performance when using it at scale.
+# AWS Athena 실습 워크숍
+본 워크샵 코스는 AWS Athena를 사용하여 데이터 수집, 분석, 변환 및 시각화에 대한 실전 기술 방식에 대한 실습 과정을 포함하고 있습니다. AWS의 다양한 데이터 분석 서비스를 활용하여 대용량 데이터 분석 및 시각화, 클라우드 기반 대형 데이터 솔루션 구현, 빅데이터 응용 프로그램의 공용 클라우드 배포 또는 마이그레이션, 대규모 데이터 저장 환경 구현 및 유지 관리, 데이터 관리 및 분석을 담당하는 데이터 엔지니어, 분석가 및 데이터 과학자를 대상으로 합니다.
 
-**Audience:**
+** 필수 지식: **
+이 과정에 참여하기 전에 참가자는 다음에 대한 기본 지식이 있어야 합니다.
+- Parquet 및 ORC와 같은 파일 형식에 대한 일반적인 이해
+- SQL과 유사한 쿼리 언어를 사용하여 데이터를 분석 한 경험
 
-This class is intended for data engineers, analysts and data scientists responsible for: analyzing and visualizing big data, implementing cloud-based big data solutions, deploying or migrating big data applications to the public cloud, implementing and maintaining large-scale data storage environments, and transforming/processing big data.
+** 실습 목표: **
+이 과정이 끝나면 참가자는 다음 작업을 수행 할 수 있습니다.
+- Amazon Athena의 목적 및 사용 사례 이해, 아키텍처와 쿼리 처리 방법 이해
+- 웹 UI 및 JDBC 드라이버를 사용하여 Athena와 상호 작용
+- Athena 스키마 및 데이터 유형의 목적 및 구조 파악 및 데이터 변환 및 로드, 질의 및 결과 보기
+- ELB, CloudFront 등과 같은 다른 AWS 서비스와 Athena의 통합
+- Athena 데이터 시각화
+- Athena 가격 책정 구조 이해 및 비용 관리
+- 쿼리 성능 최적화를 위한 모범 사례 식별
+- Athena의 일반적인 오류 문제 해결, 서비스 제한 이해 
+ 
 
-**Prerequisites:**
+** 실습 과정 **
 
-Before attending this course, participants should have:
-General understanding of columnar formats such as Parquet and ORC 
-Experience using a SQL-like query language to analyze data
-
-**Objectives:**
-
-At the end of this course, participants will be able to:
-- Understand the purpose of and use cases for AWS Athena
-- Comparing AWS Athena to Google BigQuery
-- Understand the architecture of Athena and how queries are processed
-- Interact with Athena using the web UI and JDBC driver
-- Identify the purpose and structure of Athena schemas and data types
-- Transform and load data into Athena
-- Store and re-access query results
-- Integrating Athena with other AWS services such as ELB, CloudFront etc.
-- Understand Athena pricing structure and controlling the costs
-- Identify best practices for optimizing query performance
-- Troubleshoot common errors in Athena
-- Use various Athena functions
-- Use external tools to interact with Athena via JDBC
-- Visualize Athena data
-- Understanding AWS Athena service limits
-
-**AWS Athena Workshop Labs**
-
-- [Lab 2](labs/lab2.md) - Interacting with AWS Athena
-- [Lab 3](labs/lab3.md) - Supported Formats and SerDes
-- [Lab 4](labs/lab4.md) - Partitioning Data
-- [Lab 5](labs/lab5.md) - Converting to Columnar Formats
-
-**Evaluation Form**
-
- - https://goo.gl/T9BZvy
+- [Lab 1 Athena 사용해보기](labs/lab2.md) - Amazon Quicksight 활용
+- [Lab 2 Athena 지원 형식 및 SerDes](labs/lab3.md)
+- [Lab 3 데이터 파티셔닝](labs/lab4.md) - EMR Spark 활용 
+- [Lab 4 칼럼 형식으로 변환](labs/lab5.md) - Kinesis 및 EMR 활용
