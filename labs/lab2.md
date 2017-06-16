@@ -67,7 +67,12 @@ CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_csv(
 - Finally, you are ready to run your first Athena query! Paste the following query into your query box, click ```Format Query``` and then ```Click Run Query```. Note the runtime of the query and amount of data scanned.
 
 ```sql
-SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_unixtime(yellow_trips_csv.dropoff_timestamp) as dropoff_date ,* FROM awskrug.yellow_trips_csv limit 100
+SELECT
+from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date,
+from_unixtime(yellow_trips_csv.dropoff_timestamp) as dropoff_date,
+*
+FROM awskrug.yellow_trips_csv
+LIMIT 100
 ```
 
 ## Interact with AWS Athena using JDBC Driver
@@ -96,9 +101,12 @@ SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date, from_uni
 - Run the following query in the SQL Workbench query window
 
 ```sql
-SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date,
-       from_unixtime(yellow_trips_csv.dropoff_timestamp) as dropoff_date , *
-FROM awskrug.yellow_trips_csv limit 100
+SELECT
+from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date,
+from_unixtime(yellow_trips_csv.dropoff_timestamp) as dropoff_date,
+*
+FROM awskrug.yellow_trips_csv
+LIMIT 100
 ```
 
 ## Interact with AWS Athena using AWS QuickSight
@@ -114,11 +122,15 @@ FROM awskrug.yellow_trips_csv limit 100
 - Enter any name for the Query and copy the following SQL into the 'Custom SQL' text box
 
 ```sql
-SELECT *,
-    greatest(0,trip_distance*3600.0/(dropoff_timestamp-pickup_timestamp)) as avg_speed,
-    hour(from_unixtime(pickup_timestamp)) as hour
+SELECT
+*,
+greatest(0,trip_distance*3600.0/(dropoff_timestamp-pickup_timestamp)) as avg_speed,
+hour(from_unixtime(pickup_timestamp)) as hour
 FROM awskrug.yellow_trips_csv
-WHERE pickup_timestamp is not null and pickup_timestamp is not null and pickup_timestamp<>dropoff_timestamp
+WHERE
+pickup_timestamp is not null and
+pickup_timestamp is not null and
+pickup_timestamp<>dropoff_timestamp
 ```
 
 - Click 'Finish'
