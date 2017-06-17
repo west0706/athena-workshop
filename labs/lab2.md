@@ -1,38 +1,23 @@
-# Lab 1 - Interacting with AWS Athena
+# Lab 1 - AWS Athena 사용해보기
 
->*During this lab, you will create a new database using the AWS Management Console, create a new table and run your first query. Then you will connect to your table using MySQLWorkbench as well as visualize the data using AWS QuickSight*
+>*이번 실습에서는 AWS Management Console을 사용하여 새 데이터베이스 및 테이블을 만들고 Athena를 이용하여 쿼리를 실행합니다. 추가로 MySQLWorkbench를 사용하여 생성한 테이블에 연결하고 AWS QuickSight를 사용하여 데이터를 시각화하는 법을 수행합니다.*
 >
->**^^^Please make sure your AWS Management Console is set on US-East Region (N.Virginia)^^^**
+>**^^^AWS console을 US-East Region (N.Virginia)로 설정해주세요.^^^**
 
 ![alt tag](../images/region.png)
 
-## Examine S3 bucket content
+## Database 및 Table 생성
 
-- Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console) and navigate to S3
-
-- Locate the ```nyc-yellow-trips``` bucket and navigate to ```csv``` folder. Note the amount of files and the format by downloading [sample file](https://s3.amazonaws.com/nyc-yellow-trips/csv/trips999999999999.csv)
-
-## Create S3 bucket
-
-- Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console) and navigate to S3
-
-- Click 'Create Bucket'
-- Enter 'Bucket Name' - e.g. awskrug-athena
-- Choose Region 'US Standard'
-- Click 'Create'
-
-## Create a Database and the Table
-
-- Open [AWS Management Console Console](https://dahouse.signin.aws.amazon.com/console)
-
-- First, you will be creating a **database**. In the query edit box, type the following query and click ```Run Query```
-- *Remember to replace `awskrug` with your AWS username. (e.g. shaharf)*
+- [AWS Management Console Console](https://console.aws.amazon.com/console/home) 을 열고 'Athena' 서비스 선택
+- **Database** 생성하기
+- `Query Editor` 에 아래 DDL Query 구문을 입력 후 `Run Query` 클릭
 
 ```sql
 CREATE DATABASE IF NOT EXISTS awskrug
 ```
 
-- Now, you will create an **external table based on CSV files** by copying the following DDL query into the query window and click ```Run Query```
+- 다음은 csv 파일로 부터 **external table** 생성하기
+- `Query Editor` 에 아래 DDL query 구문을 입력 후 `Run Query` 클릭
 
 ```sql
 CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_csv(
@@ -62,14 +47,19 @@ CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_csv(
          LOCATION 's3://awskrug-athena-workshop/nyc-yellow-trips/csv/'
 ```
 
-- Navigate to Athena Catalog Manager and explore the database and table you've created
-
-- Finally, you are ready to run your first Athena query! Paste the following query into your query box, click ```Format Query``` and then ```Click Run Query```. Note the runtime of the query and amount of data scanned.
+- 'Athena' 서비스에서 상단의 탭의 'Catalog Manager'를 선택후
+ 생성한 `awskrug` Database 와 `yellow_trips_csv` Table 확인
+- 첫 번째 Query를 내릴 준비가 되었습니다.
+- 아래 Query를 'Athena'의 `Query Box`에 붙여 넣은뒤 `Format Query` 를 클릭
+- `Click Run Query` 클릭
+- Run time 실행시간과 Data scanned 값을 기억해 두시기 바랍니다.
 
 ```sql
 SELECT
-from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date,
-from_unixtime(yellow_trips_csv.dropoff_timestamp) as dropoff_date,
+from_unixtime(yellow_trips_csv.pickup_timestamp)
+as pickup_date,
+from_unixtime(yellow_trips_csv.dropoff_timestamp) 
+as dropoff_date,
 *
 FROM awskrug.yellow_trips_csv
 LIMIT 100
