@@ -19,7 +19,7 @@
 ##S3 bucket 만들기
 
 - S3 console에 들어가 Create bucket을 클릭합니다. [this link](https://console.aws.amazon.com/s3/home?region=us-east-1)
-- <Bucket name> : awskrug-workshop-이름   (이때 <Bucket name>은 전세계 유일해야 합니다.)
+- Bucket name : awskrug-workshop-이름   (이때 Bucket name은 전세계 유일해야 합니다.)
 - Region은 'US East(N.Virginia)’를 선택합니다.
 - 그 외의 설정은 default로 생성합니다.
 
