@@ -41,10 +41,9 @@ CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_csv(
          tip_amount FLOAT,
          tolls_amount FLOAT,
          total_amount FLOAT,
-         store_and_fwd_flag STRING)
-         ROW FORMAT DELIMITED
-         FIELDS TERMINATED BY ','
-         LOCATION 's3://awskrug-athena-workshop/nyc-yellow-trips/csv/'
+         store_and_fwd_flag STRING
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+  LOCATION 's3://awskrug-athena-workshop/nyc-yellow-trips/csv/'
 ```
 
 - 'Athena' 서비스에서 상단의 탭의 'Catalog Manager'를 선택후
@@ -102,12 +101,10 @@ export PATH=$PATH:/opt/jdk1.8.0_131/bin:/opt/jdk1.8.0_131/jre/bin
 - SQL Workbench콘솔에서 다음 쿼리를 실행
 
 ```sql
-SELECT
-from_unixtime(yellow_trips_csv.pickup_timestamp) as pickup_date,
-from_unixtime(yellow_trips_csv.dropoff_timestamp) as dropoff_date,
-*
-FROM awskrug.yellow_trips_csv
-LIMIT 100
+SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) AS pickup_date,
+         from_unixtime(yellow_trips_csv.dropoff_timestamp) AS dropoff_date,
+         *
+FROM awskrug.yellow_trips_csv LIMIT 100
 ```
 
 ## AWS QuickSight 에서 AWS Athena와 연동하기
@@ -126,15 +123,14 @@ LIMIT 100
 - 아래 쿼리를 `Custom SQL` 입력 상자에 입력
 
 ```sql
-SELECT
-*,
-greatest(0,trip_distance*3600.0/(dropoff_timestamp-pickup_timestamp)) as avg_speed,
-hour(from_unixtime(pickup_timestamp)) as hour
+SELECT *,
+         greatest(0,
+        trip_distance*3600.0/(dropoff_timestamp-pickup_timestamp)) AS avg_speed,
+         hour(from_unixtime(pickup_timestamp)) AS hour
 FROM awskrug.yellow_trips_csv
-WHERE
-pickup_timestamp is not null and
-pickup_timestamp is not null and
-pickup_timestamp<>dropoff_timestamp
+WHERE pickup_timestamp is NOT null
+        AND pickup_timestamp is NOT null
+        AND pickup_timestamp<>dropoff_timestamp
 ```
 
 - `Finish` 클릭
@@ -172,7 +168,8 @@ CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_parquet(
          tolls_amount FLOAT,
          total_amount FLOAT,
          store_and_fwd_flag STRING
-) STORED AS PARQUET LOCATION 's3://awskrug-athena-workshop/nyc-yellow-trips/parquet/';
+) STORED AS PARQUET
+  LOCATION 's3://awskrug-athena-workshop/nyc-yellow-trips/parquet/';
 ```
 
 - EC2 인스턴스에서 아래 Bash를 실행
