@@ -1,4 +1,4 @@
-# Lab 3 - 데이터 파티셔닝 
+# Lab 3 - 데이터 파티셔닝
 
 >*이 Lab에서는 어떻게 파티션된 테이블을 만들고 쿼리하는 지 배웁니다.*
 >
@@ -6,7 +6,7 @@
 
 ![alt tag](../images/region.png)
 
-##Spark EMR cluster 만들기
+## Spark EMR cluster 만들기
 
 - 미리 EC2 Console에서 Keypair을 생성합니다.[at this link](http://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-access-ssh.html)
 - EMR Console에서 'Create cluster'를 클릭합니다.
@@ -16,14 +16,14 @@
 - EC2 key pair에 아까 생성한 키파일을 선택합니다
 - 마지막으로 Create cluster를 클릭하여 Cluster를 생성합니다.
 
-##S3 bucket 만들기
+## S3 bucket 만들기
 
 - S3 console에 들어가 Create bucket을 클릭합니다. [this link](https://console.aws.amazon.com/s3/home?region=us-east-1)
 - Bucket name : awskrug-workshop-이름   (이때 Bucket name은 전세계 유일해야 합니다.)
 - Region은 'US East(N.Virginia)’를 선택합니다.
 - 그 외의 설정은 default로 생성합니다.
 
-##Spark EMR cluster master 접속하기
+## Spark EMR cluster master 접속하기
 
 - EC2 (Security Group) console에서 ElasticMapReduce-master 를 찾습니다.
 - 해당 SG에서 Inbound – edit - Add Rule 클릭, 자신의 IP를 SSH 허용합니다.
@@ -72,6 +72,7 @@ data.write.mode("overwrite").partitionBy("pickup_date").parquet("s3://<BUCKET NA
 
 - Athena console 을 엽니다.
 - Create an external table from the partitioned PARQUET files.
+
 >**이때 `<BUCKET NAME>`은 수정합니다.**
 
 ```sql
@@ -93,8 +94,8 @@ MSCK REPAIR TABLE yellow_trips_parquet_partitioned
 select *
 from
 (
-  select date_trunc('day',from_unixtime(pickup_timestamp)) as pickup_date1,* 
-  from awskrug.yellow_trips_parquet_partitioned 
+  select date_trunc('day',from_unixtime(pickup_timestamp)) as pickup_date1,*
+  from awskrug.yellow_trips_parquet_partitioned
   where pickup_date between timestamp '2009-04-12' and timestamp '2009-04-22'
 )
 where pickup_date1 between timestamp '2009-04-12' and timestamp '2009-04-22'
@@ -114,7 +115,7 @@ where pickup_date1 between timestamp '2009-04-12' and timestamp '2009-04-22'
 select *
 from
 (
-  select date_trunc('day',from_unixtime(pickup_timestamp)) as pickup_date1,* 
+  select date_trunc('day',from_unixtime(pickup_timestamp)) as pickup_date1,*
   from awskrug.yellow_trips_parquet
 )
 where pickup_date1 between timestamp '2009-04-12' and timestamp '2009-04-22'
