@@ -10,16 +10,15 @@ if (!jinst.isJvmCreated()) {
     jinst.setupClasspath(['./AthenaJDBC41-1.0.0.jar']);
 }
 
-const configProperties = {
-    // Athena staging S3 path
-    "s3_staging_dir": "s3://srfrnk-doit/result/"
-}
-
+// Get DB_NAME from env
+if (process.env['DB_NAME']) db_name = process.env['DB_NAME'];
+// Get Ouput Bucket from env
+if (process.env['S3_BUCKET']) configProperties.s3_staging_dir = process.env['S3_BUCKET'];
 // Key is not used when s3 has the appropriate role.
 // AWS Access Key
 if (process.env['AWS_KEY']) properties.user = process.env['AWS_KEY'];
 // AWS Access Key Secret
-if (process.env['AWS_SECRET']) properties.user = process.env['AWS_SECRET'];
+if (process.env['AWS_SECRET']) properties.password = process.env['AWS_SECRET'];
 // console.log(process.env['AWS_KEY'],process.env['AWS_SECRET']);
 
 const config = {
@@ -56,7 +55,7 @@ function getDailyTotals(date, callback) {
                     statement.executeQuery("select vendor_id as vendor,sum(total_amount) as total " +
                         "from (" +
                         "select date_trunc('day',from_unixtime(pickup_timestamp)) as pickup_date,*" +
-                        "from srfrnk.yellow_trips_parquet limit 10000" +
+                        "from "+db_name+".yellow_trips_parquet limit 10000" +
                         ") " +
                         "where pickup_date between timestamp '"+startDate+"' and timestamp '"+endDate+"' "+
                         "group by vendor_id;",
@@ -86,7 +85,7 @@ function getDailyTotals(date, callback) {
 }
 
 // Print today's totals at the console
-getDailyTotals(new Date(2009,4,12), function (err, results) {
+getDailyTotals(new Date(2009,0,12), function (err, results) {
     if (!err) {
         console.log("Results: " + JSON.stringify(results));
     }
