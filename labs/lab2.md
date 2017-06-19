@@ -84,18 +84,42 @@ sudo yum install -y unzip make gcc-c++ aws-cli wget
 # Install Java 8
 # Download Java 8
 wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz"
-# Unpacking
+
+# Unpack JAVA
 sudo tar xzf jdk-8u131-linux-x64.tar.gz -C /opt
 sudo alternatives --install /usr/bin/java java /opt/jdk1.8.0_131/bin/java 2
+
 # Install Java 8
 sudo alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_131/bin/jar 2
 sudo alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_131/bin/javac 2
 sudo alternatives --set jar /opt/jdk1.8.0_131/bin/jar
 sudo alternatives --set javac /opt/jdk1.8.0_131/bin/javac
+
 # Set environment variables
 export JAVA_HOME=/opt/jdk1.8.0_131
 export JRE_HOME=/opt/jdk1.8.0_131/jre
 export PATH=$PATH:/opt/jdk1.8.0_131/bin:/opt/jdk1.8.0_131/jre/bin
+
+# Download Athena JDBC Driver
+curl -LO "https://s3.amazonaws.com/athena-downloads/drivers/AthenaJDBC41-1.1.0.jar"
+
+# Download SQL Workbench
+curl -LO "http://www.sql-workbench.net/Workbench-Build122.zip"
+
+# Unzip sqlworkbench.jar
+unzip Workbench-Build122.zip sqlworkbench.jar
+
+# Export environmet varibales
+export DB_NAME=awskrug
+export S3_BUCKET="<YOUR_S3_BUCKET>"
+export AWS_KEY="<YOUR_KEY>"
+export AWS_SECRET="<YOUR_SECRET>"
+
+# Need to send KEY & SECRET
+# Run SQL Workbench
+java -jar sqlworkbench.jar -driver="com.amazonaws.athena.jdbc.AthenaDriver" -driverJar="./AthenaJDBC41-1.1.0.jar" -url="jdbc:awsathena://athena.us-east-1.amazonaws.com:443" -username="${AWS_KEY}" -password="${AWS_SECRET}" -connectionProperties=s3_staging_dir="s3://${S3_BUCKET}/jdbc-staging/"
+
+# Every thing is set. Ready to execute SQL commands to AWS Athena remotely!!
 ```
 
 - SQL Workbench콘솔에서 다음 쿼리를 실행
@@ -107,38 +131,9 @@ SELECT from_unixtime(yellow_trips_csv.pickup_timestamp) AS pickup_date,
 FROM awskrug.yellow_trips_csv LIMIT 100
 ```
 
-## AWS QuickSight 에서 AWS Athena와 연동하기
-
-- QuickSight 사이트 열기 <https://us-east-1.quicksight.aws.amazon.com>
-
-- `Manage Data` 클릭
-- `New Data Set` 클릭
-- `Athena`를 데이터 소스로 선택
-- 이름을 입력 **<USER_NAME>-yellow-trips-csv**
-- `Create Data Source` 클릭
-- **awskrug** *database* 를 선택
-- **yellow_trips_csv** *table* 을 선택
-- `Edit/Preview Data` 클릭
-- `Tables` 패널에서 `Switch to custom SQL tool` 클릭
-- 아래 쿼리를 `Custom SQL` 입력 상자에 입력
-
-```sql
-SELECT *,
-         greatest(0,
-        trip_distance*3600.0/(dropoff_timestamp-pickup_timestamp)) AS avg_speed,
-         hour(from_unixtime(pickup_timestamp)) AS hour
-FROM awskrug.yellow_trips_csv
-WHERE pickup_timestamp is NOT null
-        AND pickup_timestamp is NOT null
-        AND pickup_timestamp<>dropoff_timestamp
-```
-
-- `Finish` 클릭
-- `Save & Visualize` 클릭
-- `Visual Types` 패널에서 `Vertical Bar Chart` 선택
-- **hour** 를 `X axis` 상자로 드래그
-- **avg_speed** 를 `Value` 상자로 드래그
-- `Value` 상자의 화살표를 클릭하여 `Aggregate` 항목에서 `Average` 선택
+> *JDBC를 이용하여 리모트에서 SQL 쿼리를 실행하였습니다.!*
+>
+> 인스턴스를 종료하지 마시고 다음 실습을 진행하시기 바랍니다.
 
 ## JDBC를 이용하여 NodeJS Application에서 AWS Athena와 연동하기
 
@@ -177,9 +172,14 @@ CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_parquet(
 ```bash
 #!/bin/bash -e
 
+# JAVA and JDBC is required. If not installed, please refer to install commands from previous JDBC exercise.
+
+# Update Image
 # Install NodeJS
+sudo yum update -y && \
 curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash - && \
-yum install -y nodejs
+yum install -y nodejs unzip make gcc-c++ nodejs aws-cli wget
+
 # Download NodeJS Application files
 curl -LO https://raw.githubusercontent.com/awskrug/athena-workshop/master/jdbc/package.json
 curl -LO https://raw.githubusercontent.com/awskrug/athena-workshop/master/jdbc/query.js
@@ -193,16 +193,51 @@ npm i
 
 ```bash
 # Configure environment varialbes for Application
-export DB_NAME="awskrug" # For this lab
-export S3_BUCKET=<YOUR_BUCKET>
-export AWS_KEY=<YOUR_KEY>
-export AWS_SECRET=<YOUR_SECRET>
+export DB_NAME="awskrug"
+export S3_BUCKET="<YOUR_BUCKET>"
+export AWS_KEY="<YOUR_KEY>"
+export AWS_SECRET="<YOUR_SECRET>"
+
 # Run NodeJS Application
 npm start
 ```
 
-- 정상적으로 동작하면 아래와 같은 출력물을 볼 수 있습니다.
+- 앱이 정상적으로 동작한다면 Athena에서 쿼리를 결과물을 받아와  아래와 같은 출력물을 볼 수 있습니다.
 
 ```json
 Results: [{"vendor":"VTS","total":3130.8600000000015},{"vendor":"CMT","total":2966.9000000000005},{"vendor":"DDS","total":380.20000000000005}]
 ```
+
+
+## AWS QuickSight 에서 AWS Athena와 연동하기
+
+- QuickSight 사이트 열기 <https://us-east-1.quicksight.aws.amazon.com>
+
+- `Manage Data` 클릭
+- `New Data Set` 클릭
+- `Athena`를 데이터 소스로 선택
+- 이름을 입력 **<USER_NAME>-yellow-trips-csv**
+- `Create Data Source` 클릭
+- **awskrug** *database* 를 선택
+- **yellow_trips_csv** *table* 을 선택
+- `Edit/Preview Data` 클릭
+- `Tables` 패널에서 `Switch to custom SQL tool` 클릭
+- 아래 쿼리를 `Custom SQL` 입력 상자에 입력
+
+```sql
+SELECT *,
+         greatest(0,
+        trip_distance*3600.0/(dropoff_timestamp-pickup_timestamp)) AS avg_speed,
+         hour(from_unixtime(pickup_timestamp)) AS hour
+FROM awskrug.yellow_trips_csv
+WHERE pickup_timestamp is NOT null
+        AND pickup_timestamp is NOT null
+        AND pickup_timestamp<>dropoff_timestamp
+```
+
+- `Finish` 클릭
+- `Save & Visualize` 클릭
+- `Visual Types` 패널에서 `Vertical Bar Chart` 선택
+- **hour** 를 `X axis` 상자로 드래그
+- **avg_speed** 를 `Value` 상자로 드래그
+- `Value` 상자의 화살표를 클릭하여 `Aggregate` 항목에서 `Average` 선택
