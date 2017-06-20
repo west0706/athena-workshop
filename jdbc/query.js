@@ -7,7 +7,7 @@ if (!jinst.isJvmCreated()) {
     jinst.addOption("-Xrs");
 
     // Specify path to athena JDBC driver
-    jinst.setupClasspath(['./AthenaJDBC41-1.0.0.jar']);
+    jinst.setupClasspath(['./AthenaJDBC41-1.1.0.jar']);
 }
 
 const configProperties = {
