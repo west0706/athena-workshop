@@ -144,10 +144,13 @@ curl -LO "http://www.sql-workbench.net/Workbench-Build122.zip"
 # Unzip sqlworkbench.jar
 unzip Workbench-Build122.zip sqlworkbench.jar
 
+# Required environments 
+#export S3_TARGET="<YOUR_BUCKET>"
+#export AWS_ACCESS_KEY_ID="<YOUR_KEY>"
+#export AWS_SECRET_ACCESS_KEY="<YOUR_SECRET>"
+
 # Export environmet varibales
 export DB_NAME="awskrug"
-export S3_TARGET="<YOUR_S3_BUCKET>"
-
 
 # Need to send KEY & SECRET
 # Run SQL Workbench
@@ -233,11 +236,15 @@ npm i
 - NodeJs Application 실행
 
 ```bash
+# Required environments 
+#export S3_TARGET="<YOUR_BUCKET>"
+#export AWS_ACCESS_KEY_ID="<YOUR_KEY>"
+#export AWS_SECRET_ACCESS_KEY="<YOUR_SECRET>"
+
 # Configure environment varialbes for Application
 export DB_NAME="awskrug"
-export S3_TARGET="<YOUR_BUCKET>"
-export AWS_ACCESS_KEY_ID="<YOUR_KEY>"
-export AWS_SECRET_ACCESS_KEY="<YOUR_SECRET>"
+export TABLE_NAME="yellow_trips_parquet"
+
 
 # Run NodeJS Application
 npm start
