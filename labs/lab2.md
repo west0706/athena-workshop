@@ -170,6 +170,8 @@ FROM awskrug.yellow_trips_csv LIMIT 100
 
 > *JDBC를 이용하여 리모트에서 SQL 쿼리를 실행하였습니다.!*
 >
+> SQL Workbench 종료는 `\q` 를 입력하세요
+>
 > 인스턴스를 종료하지 마시고 다음 실습을 진행하시기 바랍니다.
 
 ## JDBC를 이용하여 NodeJS Application에서 AWS Athena와 연동하기
