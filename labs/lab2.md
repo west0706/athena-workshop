@@ -253,7 +253,7 @@ npm start
 - 앱이 정상적으로 동작한다면 Athena에서 쿼리를 결과물을 받아와  아래와 같은 출력물을 볼 수 있습니다.
 
 ```json
-Results: [{"vendor":"VTS","total":3130.8600000000015},{"vendor":"CMT","total":2966.9000000000005},{"vendor":"DDS","total":380.20000000000005}]
+Results: [{"vendor":"1","total":4465.060000000017},{"vendor":"2","total":5215.870000000021}]
 ```
 
 > 아래와 같은 에러가 발생한다면 Athena의 Database 이름 Table명을 확인해 주세요.
