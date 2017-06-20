@@ -6,6 +6,30 @@
 
 ![alt tag](../images/region.png)
 
+## S3 Bucket을 개인 S3 Bucket으로 복사
+
+```bash
+#!/bin/bash
+# us-east-1 amazonlinux-minimal
+# ami-c38a1bd5
+
+# Update Image
+sudo yum update -y && \
+sudo yum install -y aws-cli
+
+# Set environment variable
+# Example
+#export S3_TARGET="awskrug-athena"
+export S3_TARGET="<YOUR_S3_BUCKET_NAME>"
+export S3_INPUT="awskrug-athena-workshop/labs"
+aws s3 sync s3://${S3_INPUT}/csv/ s3:/${S3_TARGET}/csv/
+aws s3 sync s3://${S3_INPUT}/orc/ s3:/${S3_TARGET}/orc/
+aws s3 sync s3://${S3_INPUT}/parquet/ s3:/${S3_TARGET}/parquet/
+
+# Ready
+# 
+```
+
 ## Database 및 Table 생성
 
 - [AWS Management Console Console](https://console.aws.amazon.com/console/home) 을 열고 'Athena' 서비스 선택
@@ -18,6 +42,8 @@ CREATE DATABASE IF NOT EXISTS awskrug
 
 - 다음은 csv 파일로 부터 *yellow_trips_csv* **EXTERNAL TABLE** 생성하기
 - `Query Editor` 에 아래 DDL query 구문을 복사 후 `Run Query` 클릭
+
+> *<YOUR_S3_BUCKET_NAME>* 을 수정하세요
 
 ```sql
 CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_csv(
@@ -43,7 +69,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_csv(
          total_amount FLOAT,
          store_and_fwd_flag STRING
 ) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
-  LOCATION 's3://awskrug-athena-workshop/nyc-yellow-trips/csv/'
+  LOCATION 's3://<YOUR_S3_BUCKET_NAME>/csv/'
 ```
 
 - 'Athena' 서비스에서 상단의 탭의 'Catalog Manager'를 선택후
@@ -119,6 +145,9 @@ export AWS_SECRET="<YOUR_SECRET>"
 # Run SQL Workbench
 java -jar sqlworkbench.jar -driver="com.amazonaws.athena.jdbc.AthenaDriver" -driverJar="./AthenaJDBC41-1.1.0.jar" -url="jdbc:awsathena://athena.us-east-1.amazonaws.com:443" -username="${AWS_KEY}" -password="${AWS_SECRET}" -connectionProperties=s3_staging_dir="s3://${S3_BUCKET}/jdbc-staging/"
 
+# If you encouter ERROR Messages then try run and
+# Select newly installed JAVA version
+sudo alternatives --config java
 # Every thing is set. Ready to execute SQL commands to AWS Athena remotely!!
 ```
 
@@ -139,6 +168,8 @@ FROM awskrug.yellow_trips_csv LIMIT 100
 
 - [AWS Management Console Console](https://console.aws.amazon.com/console/home) 을 열고 'Athena' 서비스 선택
 - `Query Editor` 에 아래 DDL Query 구문을 복사 후 `Run Query` 클릭
+
+> *<YOUR_S3_BUCKET_NAME>* 을 수정하세요
 
 ```sql
 CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_parquet(
@@ -164,7 +195,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_parquet(
          total_amount FLOAT,
          store_and_fwd_flag STRING
 ) STORED AS PARQUET
-  LOCATION 's3://awskrug-athena-workshop/nyc-yellow-trips/parquet/';
+  LOCATION 's3://<YOUR_S3_BUCKET_NAME>/parquet/';
 ```
 
 - EC2 인스턴스에서 아래 Bash를 실행
@@ -207,7 +238,6 @@ npm start
 ```json
 Results: [{"vendor":"VTS","total":3130.8600000000015},{"vendor":"CMT","total":2966.9000000000005},{"vendor":"DDS","total":380.20000000000005}]
 ```
-
 
 ## AWS QuickSight 에서 AWS Athena와 연동하기
 
