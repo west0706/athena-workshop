@@ -23,9 +23,9 @@ const config = {
 
 // Key is not used when s3 has the appropriate role.
 // AWS Access Key
-if (process.env['AWS_KEY']) configProperties.user = process.env['AWS_KEY'];
+if (process.env['AWS_ACCESS_KEY_ID']) configProperties.user = process.env['AWS_ACCESS_KEY_ID'];
 // AWS Access Key Secret
-if (process.env['AWS_SECRET']) configProperties.password = process.env['AWS_SECRET'];
+if (process.env['AWS_SECRET_ACCESS_KEY']) configProperties.password = process.env['AWS_SECRET_ACCESS_KEY'];
 // console.log(process.env['AWS_KEY'],process.env['AWS_SECRET']);
 
 function getDailyTotals(date, callback) {
