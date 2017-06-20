@@ -23,11 +23,9 @@ sudo yum install -y aws-cli
 export S3_TARGET="<YOUR_S3_BUCKET_NAME>"
 export S3_INPUT="awskrug-athena-workshop"
 
-aws configure 
-AWS Access Key ID [None]: <YOUR_AWS_ACCESS_KEY>
-AWS Secret Access Key [None]: <YOUR_AWS_SECRET_ACCESS_KEY>
-Default region name [None]: us-east-1
-Default output format [None]: json
+# AWS CLI environment
+export AWS_ACCESS_KEY_ID="<YOUR_ACCESS_KEY>"
+export AWS_SECRET_ACCESS_KEY="<YOUR_SECRET_KEY>"
 
 aws s3 mb s3://${S3_TARGET}
 aws s3 cp s3://${S3_INPUT}/labs/csv/ s3://${S3_TARGET}/csv/ --recursive
@@ -150,7 +148,7 @@ export S3_BUCKET="<YOUR_S3_BUCKET>"
 
 # Need to send KEY & SECRET
 # Run SQL Workbench
-java -jar sqlworkbench.jar -driver="com.amazonaws.athena.jdbc.AthenaDriver" -driverJar="./AthenaJDBC41-1.1.0.jar" -url="jdbc:awsathena://athena.us-east-1.amazonaws.com:443" -username="${AWS_KEY}" -password="${AWS_SECRET}" -connectionProperties=s3_staging_dir="s3://${S3_BUCKET}/jdbc-staging/"
+java -jar sqlworkbench.jar -driver="com.amazonaws.athena.jdbc.AthenaDriver" -driverJar="./AthenaJDBC41-1.1.0.jar" -url="jdbc:awsathena://athena.us-east-1.amazonaws.com:443" -username="${AWS_ACCESS_KEY_ID}" -password="${AWS_SECRET_ACCESS_KEY}" -connectionProperties=s3_staging_dir="s3://${S3_BUCKET}/jdbc-staging/"
 
 # If you encouter ERROR Messages then try run and
 # Select newly installed JAVA version
@@ -233,8 +231,8 @@ npm i
 # Configure environment varialbes for Application
 export DB_NAME="awskrug"
 export S3_BUCKET="<YOUR_BUCKET>"
-export AWS_KEY="<YOUR_KEY>"
-export AWS_SECRET="<YOUR_SECRET>"
+export AWS_ACCESS_KEY_ID="<YOUR_KEY>"
+export AWS_SECRET_ACCESS_KEY="<YOUR_SECRET>"
 
 # Run NodeJS Application
 npm start
