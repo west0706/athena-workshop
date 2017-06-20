@@ -113,5 +113,5 @@ from
   select date_trunc('day',from_unixtime(pickup_timestamp)) as pickup_date1,*
   from awskrug.yellow_trips_parquet
 )
-where pickup_date1 between timestamp '2009-04-12' and timestamp '2009-04-22'
+where pickup_date1 between timestamp '2016-04-12' and timestamp '2016-04-22'
 ```
