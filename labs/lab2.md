@@ -77,6 +77,15 @@ LIMIT 100
 # us-east-1 amazonlinux-minimal
 # ami-c38a1bd5
 
+#S 실습용 Bucket(name: awskrug-workshop-<이름>에 실습용 데이터 넣기
+export AWS_KEY="<YOUR_KEY>"
+export AWS_SECRET="<YOUR_SECRET>"
+aws s3 mb s3://awskrug-workshop-<이름>
+aws s3 cp s3://awskrug-athena-workshop/labs/csv/ s3://awskrug-workshop-<이름>/labs/csv/ --recursive
+aws s3 cp s3://awskrug-athena-workshop/labs/parquet/ s3://awskrug-workshop-<이름>/labs/parquet/ --recursive
+aws s3 cp s3://awskrug-athena-workshop/labs/orc/ s3://awskrug-workshop-<이름>/labs/orc/ --recursive
+
+
 # Update Image
 sudo yum update -y && \
 sudo yum install -y unzip make gcc-c++ aws-cli wget
@@ -112,8 +121,7 @@ unzip Workbench-Build122.zip sqlworkbench.jar
 # Export environmet varibales
 export DB_NAME=awskrug
 export S3_BUCKET="<YOUR_S3_BUCKET>"
-export AWS_KEY="<YOUR_KEY>"
-export AWS_SECRET="<YOUR_SECRET>"
+
 
 # Need to send KEY & SECRET
 # Run SQL Workbench
