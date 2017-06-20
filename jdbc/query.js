@@ -55,7 +55,7 @@ function getDailyTotals(date, callback) {
                     statement.executeQuery("select vendor_id as vendor,sum(total_amount) as total " +
                         "from (" +
                         "select date_trunc('day',from_unixtime(pickup_timestamp)) as pickup_date,*" +
-                        "from "+process.env['DB_NAME']+".yellow_trips_parquet limit 10000" +
+                        "from "+process.env['DB_NAME']+"."+process.env['TABLE_NAME']+" limit 10000" +
                         ") " +
                         "where pickup_date between timestamp '"+startDate+"' and timestamp '"+endDate+"' "+
                         "group by vendor_id;",
