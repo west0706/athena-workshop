@@ -24,9 +24,9 @@ export AWS_SECRET="<YOUR_SECRET>"
 #export S3_TARGET="awskrug-athena"
 export S3_TARGET="<YOUR_S3_BUCKET_NAME>"
 export S3_INPUT="awskrug-athena-workshop/labs"
-aws s3 sync s3://${S3_INPUT}/csv/ s3:/${S3_TARGET}/csv/
-aws s3 sync s3://${S3_INPUT}/orc/ s3:/${S3_TARGET}/orc/
-aws s3 sync s3://${S3_INPUT}/parquet/ s3:/${S3_TARGET}/parquet/
+aws s3 sync s3://${S3_INPUT}/csv/ s3://${S3_TARGET}/csv/
+aws s3 sync s3://${S3_INPUT}/orc/ s3://${S3_TARGET}/orc/
+aws s3 sync s3://${S3_INPUT}/parquet/ s3://${S3_TARGET}/parquet/
 
 # Ready
 # 
