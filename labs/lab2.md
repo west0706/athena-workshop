@@ -21,7 +21,7 @@ sudo yum install -y aws-cli
 # Example
 #export S3_TARGET="awskrug-athena"
 export S3_TARGET="<YOUR_S3_BUCKET_NAME>"
-export S3_INPUT="awskrug-athena-workshop/labs"
+export S3_INPUT="awskrug-athena-workshop"
 
 aws configure 
 AWS Access Key ID [None]: <YOUR_AWS_ACCESS_KEY>
@@ -30,9 +30,9 @@ Default region name [None]: us-east-1
 Default output format [None]: json
 
 aws s3 mb s3://${S3_TARGET}
-aws s3 sync s3://${S3_INPUT}/csv/ s3://${S3_TARGET}/csv/
-aws s3 sync s3://${S3_INPUT}/orc/ s3://${S3_TARGET}/orc/
-aws s3 sync s3://${S3_INPUT}/parquet/ s3://${S3_TARGET}/parquet/
+aws s3 cp s3://${S3_INPUT}/labs/csv/ s3://${S3_TARGET}/csv/ --recursive
+aws s3 cp s3://${S3_INPUT}/labs/orc/ s3://${S3_TARGET}/orc/ --recursive
+aws s3 cp s3://${S3_INPUT}/labs/parquet/ s3://${S3_TARGET}/parquet/ --recursive
 
 # Ready
 # 
