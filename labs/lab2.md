@@ -219,7 +219,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_parquet(
 # Install NodeJS
 sudo yum update -y && \
 curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash - && \
-yum install -y nodejs unzip make gcc-c++ nodejs aws-cli wget
+sudo yum install -y nodejs unzip make gcc-c++ nodejs aws-cli wget
 
 # Download NodeJS Application files
 curl -LO https://raw.githubusercontent.com/awskrug/athena-workshop/master/jdbc/package.json
