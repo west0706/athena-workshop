@@ -16,12 +16,6 @@
 - EC2 key pair에 아까 생성한 키파일을 선택합니다
 - 마지막으로 Create cluster를 클릭하여 Cluster를 생성합니다.
 
-## S3 bucket 만들기
-
-- S3 console에 들어가 Create bucket을 클릭합니다. [this link](https://console.aws.amazon.com/s3/home?region=us-east-1)
-- Bucket name : awskrug-workshop-이름   (이때 Bucket name은 전세계 유일해야 합니다.)
-- Region은 'US East(N.Virginia)’를 선택합니다.
-- 그 외의 설정은 default로 생성합니다.
 
 ## Spark EMR cluster master 접속하기
 
@@ -45,12 +39,13 @@ val hiveContext = new org.apache.spark.sql.hive.HiveContext(sc)
 ```
 
 - 읽을 external CSV table을 정의합니다.
-
+ **이때`<BUCKET NAME>`은 아까 생성한 버킷 이름으로 바꿔서 입력합니다.**
+ 
 ```java
 hiveContext.sql("CREATE EXTERNAL TABLE IF NOT EXISTS yellow_trips_csv(" +
   "pickup_timestamp BIGINT, dropoff_timestamp BIGINT, vendor_id STRING, pickup_datetime TIMESTAMP, dropoff_datetime TIMESTAMP, pickup_longitude FLOAT, pickup_latitude FLOAT, dropoff_longitude FLOAT, dropoff_latitude FLOAT, rate_code STRING, passenger_count INT, trip_distance FLOAT, payment_type STRING, fare_amount FLOAT, extra FLOAT, mta_tax FLOAT, imp_surcharge FLOAT, tip_amount FLOAT, tolls_amount FLOAT, total_amount FLOAT, store_and_fwd_flag STRING) " +
   "ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' " +
-  "LOCATION 's3://awskrug-athena-workshop/csv/'")
+  "LOCATION 's3://<BUCKET NAME>/csv/'")
 ```
 
 - CSV hive table로부터 데이터를 읽습니다.
@@ -59,8 +54,8 @@ hiveContext.sql("CREATE EXTERNAL TABLE IF NOT EXISTS yellow_trips_csv(" +
 val data=hiveContext.sql("select *,date_sub(from_unixtime(pickup_timestamp),0) as pickup_date from yellow_trips_csv limit 100")
 ```
 
-- 데이터를 쓰는 곳을 지정합니다. **이때`<BUCKET NAME>`은 아까 생성한 버킷 이름으로 바꿔서 입력합니다.**
-
+- 데이터를 쓰는 곳을 지정합니다.
+**이때 `<BUCKET NAME>`은 수정합니다.**
 ```java
 data.write.mode("overwrite").partitionBy("pickup_date").parquet("s3://<BUCKET NAME>/parquet-partitioned/")
 ```
