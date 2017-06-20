@@ -6,13 +6,42 @@
 
 ![alt tag](../images/region.png)
 
-## Pargquet 파일로 부터 테이블 생성
-
 - AWS console 열기 [https://console.aws.amazon.com/athena/](https://console.aws.amazon.com/athena/)
 - Query 창에 다음의 DDL 쿼리를 입력하세요
+## CSV파일로 부터 테이블 생성
 
 ```sql
-CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_parquet(
+CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.big_yellow_trips_csv(
+         pickup_timestamp BIGINT,
+         dropoff_timestamp BIGINT,
+         vendor_id STRING,
+         pickup_datetime TIMESTAMP,
+         dropoff_datetime TIMESTAMP,
+         pickup_longitude FLOAT,
+         pickup_latitude FLOAT,
+         dropoff_longitude FLOAT,
+         dropoff_latitude FLOAT,
+         rate_code STRING,
+         passenger_count INT,
+         trip_distance FLOAT,
+         payment_type STRING,
+         fare_amount FLOAT,
+         extra FLOAT,
+         mta_tax FLOAT,
+         imp_surcharge FLOAT,
+         tip_amount FLOAT,
+         tolls_amount FLOAT,
+         total_amount FLOAT,
+         store_and_fwd_flag STRING
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+  LOCATION 's3://awskrug-athena-workshop/nyc-yellow-trips/csv/';
+```
+
+## Pargquet 파일로 부터 테이블 생성
+
+
+```sql
+CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.big_yellow_trips_parquet(
          pickup_timestamp BIGINT,
          dropoff_timestamp BIGINT,
          vendor_id STRING,
@@ -42,7 +71,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_parquet(
 - Query 창에 다음의 DDL 쿼리를 입력하세요
 
 ```sql
-CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_orc(
+CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.big_yellow_trips_orc(
          pickup_timestamp BIGINT,
          dropoff_timestamp BIGINT,
          vendor_id STRING,
@@ -72,15 +101,15 @@ CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_orc(
 - 아래의 쿼리를 하나씩 실행하고, 아무 데이터도 나오지 않을 때의 쿼리 성능을 비교해 보세요.
 
 ```sql
-SELECT COUNT(*) FROM awskrug.yellow_trips_csv;
-SELECT COUNT(*) FROM awskrug.yellow_trips_parquet;
-SELECT COUNT(*) FROM awskrug.yellow_trips_orc;
+SELECT COUNT(*) FROM awskrug.big_yellow_trips_csv;
+SELECT COUNT(*) FROM awskrug.big_yellow_trips_parquet;
+SELECT COUNT(*) FROM awskrug.big_yellow_trips_orc;
 ```
 
 ```sql
-SELECT max(passenger_count) FROM awskrug.yellow_trips_csv WHERE vendor_id <> 'VTS';
-SELECT max(passenger_count) FROM awskrug.yellow_trips_parquet WHERE vendor_id <> 'VTS';
-SELECT max(passenger_count) FROM awskrug.yellow_trips_orc WHERE vendor_id <> 'VTS';
+SELECT max(passenger_count) FROM awskrug.big_yellow_trips_csv WHERE vendor_id <> 'VTS';
+SELECT max(passenger_count) FROM awskrug.big_yellow_trips_parquet WHERE vendor_id <> 'VTS';
+SELECT max(passenger_count) FROM awskrug.big_yellow_trips_orc WHERE vendor_id <> 'VTS';
 ```
 
 ## 사용자 정의 포맷으로 텍스트 파일로 테이블을 생성
@@ -129,7 +158,7 @@ SELECT * FROM awskrug.elb_logs_raw_native WHERE elb_response_code <> '200' LIMIT
 
 ```sql
 SELECT *
-FROM awskrug.yellow_trips_csv
+FROM awskrug.big_yellow_trips_csv
 limit 10000;
 ```
 
@@ -138,7 +167,7 @@ limit 10000;
 - Query 창에 다음의 DDL 쿼리를 입력하세요. `<RESULTS PATH>`의 값을 수정해주세요.
 
 ```sql
-CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_csv_query_result(
+CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.big_yellow_trips_csv_query_result(
          pickup_timestamp BIGINT,
          dropoff_timestamp BIGINT,
          vendor_id STRING,
@@ -166,7 +195,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_csv_query_result(
 - 아래의 쿼리를 실행해보세요.
 
 ```sql
-select count(*) from awskrug.yellow_trips_csv_query_result
+select count(*) from awskrug.big_yellow_trips_csv_query_result
 ```
 
-## You have sucessully completed Lab 3 :-)
+## You have sucessully completed Lab 2 :-)
