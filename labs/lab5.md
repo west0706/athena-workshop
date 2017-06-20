@@ -1,7 +1,6 @@
 # Lab 5 - Converting to Columnar Formats
 
->*During this lab you will learn how to convert row based file formats like CSV and JSON into columnar formats such as ORC and PARQUET
-in real time as they are fed through a Kinesis Stream*
+>*이번 랩에서는 CSV 와 JSON 같은 row기반 파일형식을 Kinesis Stream 을 통해 실시간으로 ORC 와 PARQUET 컬럼 형식으로 변환하는 방법에 대해 알아봅니다.*
 >
 >**^^^Please make sure your AWS Management Console is set on US-East Region (N.Virginia)^^^**
 
