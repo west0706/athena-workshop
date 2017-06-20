@@ -6,7 +6,7 @@
 
 ![alt tag](../images/region.png)
 
-## S3 Bucket을 개인 S3 Bucket으로 복사
+## CSV Parquet ORC 자료를 개인 S3 Bucket으로 복사
 
 ```bash
 #!/bin/bash
@@ -21,11 +21,14 @@ sudo yum install -y aws-cli
 # Example
 #export S3_TARGET="awskrug-athena"
 export S3_TARGET="<YOUR_S3_BUCKET_NAME>"
-export S3_INPUT="awskrug-athena-workshop"
+
 
 # AWS CLI environment
 export AWS_ACCESS_KEY_ID="<YOUR_ACCESS_KEY>"
 export AWS_SECRET_ACCESS_KEY="<YOUR_SECRET_KEY>"
+
+# AWSKRUG Athena Lab Bucket
+export S3_INPUT="awskrug-athena-workshop"
 
 aws s3 mb s3://${S3_TARGET}
 aws s3 cp s3://${S3_INPUT}/labs/csv/ s3://${S3_TARGET}/csv/ --recursive
@@ -142,13 +145,13 @@ curl -LO "http://www.sql-workbench.net/Workbench-Build122.zip"
 unzip Workbench-Build122.zip sqlworkbench.jar
 
 # Export environmet varibales
-export DB_NAME=awskrug
-export S3_BUCKET="<YOUR_S3_BUCKET>"
+export DB_NAME="awskrug"
+export S3_TARGET="<YOUR_S3_BUCKET>"
 
 
 # Need to send KEY & SECRET
 # Run SQL Workbench
-java -jar sqlworkbench.jar -driver="com.amazonaws.athena.jdbc.AthenaDriver" -driverJar="./AthenaJDBC41-1.1.0.jar" -url="jdbc:awsathena://athena.us-east-1.amazonaws.com:443" -username="${AWS_ACCESS_KEY_ID}" -password="${AWS_SECRET_ACCESS_KEY}" -connectionProperties=s3_staging_dir="s3://${S3_BUCKET}/jdbc-staging/"
+java -jar sqlworkbench.jar -driver="com.amazonaws.athena.jdbc.AthenaDriver" -driverJar="./AthenaJDBC41-1.1.0.jar" -url="jdbc:awsathena://athena.us-east-1.amazonaws.com:443" -username="${AWS_ACCESS_KEY_ID}" -password="${AWS_SECRET_ACCESS_KEY}" -connectionProperties=s3_staging_dir="s3://${S3_TARGET}/jdbc-staging/"
 
 # If you encouter ERROR Messages then try run and
 # Select newly installed JAVA version
@@ -230,7 +233,7 @@ npm i
 ```bash
 # Configure environment varialbes for Application
 export DB_NAME="awskrug"
-export S3_BUCKET="<YOUR_BUCKET>"
+export S3_TARGET="<YOUR_BUCKET>"
 export AWS_ACCESS_KEY_ID="<YOUR_KEY>"
 export AWS_SECRET_ACCESS_KEY="<YOUR_SECRET>"
 
