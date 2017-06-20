@@ -249,6 +249,20 @@ npm start
 Results: [{"vendor":"VTS","total":3130.8600000000015},{"vendor":"CMT","total":2966.9000000000005},{"vendor":"DDS","total":380.20000000000005}]
 ```
 
+> 아래와 같은 에러가 발생한다면 Athena의 Database 이름 Table명을 확인해 주세요.
+
+```bash
+{ Error: Error running instance method
+java.sql.SQLException: Database, table or column name not found. Please check your query.
+	at com.amazonaws.athena.jdbc.AthenaStatement.execute(AthenaStatement.java:241)
+	at com.amazonaws.athena.jdbc.AthenaStatement.executeQuery(AthenaStatement.java:66)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+ cause: nodeJava_java_sql_SQLException {} }
+```
+
 ## AWS QuickSight 에서 AWS Athena와 연동하기
 
 - QuickSight 사이트 열기 <https://us-east-1.quicksight.aws.amazon.com>
