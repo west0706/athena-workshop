@@ -1,4 +1,4 @@
-# Lab 3 - 지원되는 형식 및 SerDes(serializer/deserializers)
+# Lab 2 - 지원되는 형식 및 SerDes(serializer/deserializers)
 
 >*이번 랩에서는 다양한 파일 포맷으로 EXTERNAL 테이블을 정의하는 방법에 대해서 살펴보겠습니다.*
 >
