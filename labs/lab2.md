@@ -19,6 +19,8 @@ sudo yum install -y aws-cli
 
 # Set environment variable
 # Example
+export AWS_KEY="<YOUR_KEY>"
+export AWS_SECRET="<YOUR_SECRET>"
 #export S3_TARGET="awskrug-athena"
 export S3_TARGET="<YOUR_S3_BUCKET_NAME>"
 export S3_INPUT="awskrug-athena-workshop/labs"
@@ -102,15 +104,6 @@ LIMIT 100
 #!/bin/bash
 # us-east-1 amazonlinux-minimal
 # ami-c38a1bd5
-
-#S 실습용 Bucket(name: awskrug-workshop-<이름>에 실습용 데이터 넣기
-export AWS_KEY="<YOUR_KEY>"
-export AWS_SECRET="<YOUR_SECRET>"
-aws s3 mb s3://awskrug-workshop-<이름>
-aws s3 cp s3://awskrug-athena-workshop/labs/csv/ s3://awskrug-workshop-<이름>/labs/csv/ --recursive
-aws s3 cp s3://awskrug-athena-workshop/labs/parquet/ s3://awskrug-workshop-<이름>/labs/parquet/ --recursive
-aws s3 cp s3://awskrug-athena-workshop/labs/orc/ s3://awskrug-workshop-<이름>/labs/orc/ --recursive
-
 
 # Update Image
 sudo yum update -y && \
