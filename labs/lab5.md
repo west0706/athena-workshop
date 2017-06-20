@@ -1,4 +1,4 @@
-# Lab 5 - Converting to Columnar Formats Lab 5 - 컬럼 형식으로 변환
+# Lab 5 - 컬럼 형식으로 변환
 
 >*이번 랩에서는 CSV 와 JSON 같은 row기반 파일형식을 Kinesis Stream 을 통해 실시간으로 ORC 와 PARQUET 컬럼 형식으로 변환하는 방법에 대해 알아봅니다.*
 >
@@ -6,9 +6,9 @@
 
 ![alt tag](../images/region.png)
 
-## Create a Kinesis Stream
+## Kinesis Stream 만들기
 
-- Open the Kinesis Console at [this link](https://console.aws.amazon.com/kinesis/home?region=us-east-1#/streams/create)
+- [this link](https://console.aws.amazon.com/kinesis/home?region=us-east-1#/streams/create) 에서 Kinesis 콘솔을 엽니다.
 - For **Stream Name** use your username
 - For **Number of shards** put 1
 - Click **Create Stream**
