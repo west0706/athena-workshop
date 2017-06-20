@@ -10,22 +10,23 @@ if (!jinst.isJvmCreated()) {
     jinst.setupClasspath(['./AthenaJDBC41-1.0.0.jar']);
 }
 
+const configProperties = {
+    // Athena staging S3 path
+    "s3_staging_dir": "s3://"+process.env['S3_TARGET']+"/jdbc-staging/"
+}
 const config = {
     // Athena JDBC connection string incl. region name
     url: 'jdbc:awsathena://athena.us-east-1.amazonaws.com:443',
-    drivername: 'com.amazonaws.athena.jdbc.AthenaDriver'
+    drivername: 'com.amazonaws.athena.jdbc.AthenaDriver',
+    properties: configProperties
 };
 
-// Get Ouput Bucket from env
-if (process.env['S3_TARGET']) config.properties.s3_staging_dir = process.env['S3_TARGET'] +"/nodeapp-staging/";
 // Key is not used when s3 has the appropriate role.
 // AWS Access Key
-if (process.env['AWS_ACCESS_KEY_ID']) config.user = process.env['AWS_ACCESS_KEY_ID'];
+if (process.env['AWS_KEY']) configProperties.user = process.env['AWS_KEY'];
 // AWS Access Key Secret
-if (process.env['AWS_SECRET_ACCESS_KEY']) config.password = process.env['AWS_SECRET_ACCESS_KEY'];
+if (process.env['AWS_SECRET']) configProperties.password = process.env['AWS_SECRET'];
 // console.log(process.env['AWS_KEY'],process.env['AWS_SECRET']);
-
-
 
 function getDailyTotals(date, callback) {
     var jdbc = new JDBC(config);
