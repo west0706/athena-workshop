@@ -96,13 +96,13 @@ from
 where pickup_date1 between timestamp '2016-05-12' and timestamp '2016-05-22'
 ```
 
-#- 파티셔닝되지 않은 parquet external table을 만듭니다. ##lab1에서 
-#
-#```sql
+#- 파티셔닝되지 않은 parquet external table을 만듭니다. ##lab1에 진행완료
+
+```sql
 # CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_parquet(pickup_timestamp BIGINT, dropoff_timestamp BIGINT, vendor_id STRING, pickup_datetime TIMESTAMP, dropoff_datetime TIMESTAMP, pickup_longitude FLOAT, pickup_latitude FLOAT, dropoff_longitude FLOAT, dropoff_latitude FLOAT, rate_code STRING, passenger_count INT, trip_distance FLOAT, payment_type STRING, fare_amount FLOAT, extra FLOAT, mta_tax FLOAT, imp_surcharge FLOAT, tip_amount FLOAT, tolls_amount FLOAT, total_amount FLOAT, store_and_fwd_flag STRING)
 # STORED AS parquet
 # LOCATION 's3://<BUCKET NAME>/parquet/';
-# ```
+```
 
 - 아까의 실행 결과와 다음의 쿼리 실행결과에서 시간과 스캔하는 데이터를 비교해봅니다.
 
