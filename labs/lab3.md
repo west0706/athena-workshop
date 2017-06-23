@@ -141,7 +141,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.elb_logs_raw_native (
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
 WITH SERDEPROPERTIES (
          'serialization.format' = '1','input.regex' = '([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*):([0-9]*) ([.0-9]*) ([.0-9]*) ([.0-9]*) (-|[0-9]*) (-|[0-9]*) ([-0-9]*) ([-0-9]*) \\\"([^ ]*) ([^ ]*) (- |[^ ]*)\\\" (\"[^\"]*\") ([A-Z0-9-]+) ([A-Za-z0-9.-]*)$' )
-LOCATION 's3://awskrug-athena-workshop/elb/raw/';
+LOCATION 's3://athena-examples/elb/raw/';
 ```
 
 - 쿼리 실행이 끝났을 때 아래의 쿼리를 실행해 보세요
