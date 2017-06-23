@@ -37,7 +37,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.big_yellow_trips_csv(
   LOCATION 's3://awskrug-athena-workshop/nyc-yellow-trips/csv/';
 ```
 
-## Pargquet 파일로 부터 테이블 생성
+## Parquet 파일로 부터 테이블 생성
 
 
 ```sql
