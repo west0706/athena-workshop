@@ -31,8 +31,8 @@ if __name__ == "__main__":
     # Define an external hive table from the PARQUET files stored in S3 to be used as source to read data from.
     sqlContext.sql("CREATE EXTERNAL TABLE IF NOT EXISTS yellow_trips_parquet( " +
                    "pickup_timestamp BIGINT, dropoff_timestamp BIGINT, vendor_id STRING, pickup_datetime TIMESTAMP, dropoff_datetime TIMESTAMP, pickup_longitude FLOAT, pickup_latitude FLOAT, dropoff_longitude FLOAT, dropoff_latitude FLOAT, rate_code STRING, passenger_count INT, trip_distance FLOAT, payment_type STRING, fare_amount FLOAT, extra FLOAT, mta_tax FLOAT, imp_surcharge FLOAT, tip_amount FLOAT, tolls_amount FLOAT, total_amount FLOAT, store_and_fwd_flag STRING) " +
-                   "STORED AS PARQUET " +
-                   "LOCATION 's3://<YOUR_BUCKET>/parquet/'")
+                   "ROW FORAMAT DELIMITED FIELDS TERMINATED BY ',' NULL DEFINED AS '\N' " +
+                   "LOCATION 's3://<YOUR_BUCKET>/csv/'")
 
     # Create an RDD containing 100 items from the external table defined above
     lines=sqlContext.sql("select pickup_timestamp, dropoff_timestamp, vendor_id, pickup_datetime, dropoff_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance, payment_type, fare_amount, extra, mta_tax, tip_amount, tolls_amount, store_and_fwd_flag from yellow_trips_parquet limit 100")
