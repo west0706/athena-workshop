@@ -8,7 +8,7 @@ from pyspark.sql import SparkSession
 from boto import kinesis
 import os
 db_name = os.environ['DB_NAME'];
-s3_bucket = os.environ['S3_BUCKET'];
+s3_bucket = os.environ['S3_TARGET'];
 print(db_name);
 print(s3_bucket);
 
