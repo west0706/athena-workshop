@@ -9,7 +9,7 @@ from boto import kinesis
 
 logger = logging.getLogger('py4j')
 
-kinesisStreamName='awskrug'
+kinesisStreamName='stream'
 
 def write_partition(partition):
         # Access the Kinesis client object
@@ -29,15 +29,15 @@ if __name__ == "__main__":
     sqlContext = SparkSession.builder.enableHiveSupport().getOrCreate();
 
     # Define an external hive table from the PARQUET files stored in S3 to be used as source to read data from.
-    sqlContext.sql("CREATE EXTERNAL TABLE IF NOT EXISTS yellow_trips_parquet( " +
-                   "pickup_timestamp BIGINT, dropoff_timestamp BIGINT, vendor_id STRING, pickup_datetime TIMESTAMP, dropoff_datetime TIMESTAMP, pickup_longitude FLOAT, pickup_latitude FLOAT, dropoff_longitude FLOAT, dropoff_latitude FLOAT, rate_code STRING, passenger_count INT, trip_distance FLOAT, payment_type STRING, fare_amount FLOAT, extra FLOAT, mta_tax FLOAT, imp_surcharge FLOAT, tip_amount FLOAT, tolls_amount FLOAT, total_amount FLOAT, store_and_fwd_flag STRING) " +
-                   "ROW FORAMAT DELIMITED FIELDS TERMINATED BY ',' NULL DEFINED AS '\N' " +
-                   "LOCATION 's3://<YOUR_BUCKET>/csv/'")
+    sqlContext.sql("CREATE EXTERNAL TABLE IF NOT EXISTS yellow_trips_parquet(" +
+                    "pickup_timestamp BIGINT, vendor_id STRING, rate_code STRING, payment_type STRING) " +
+                    #"ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' " +
+                     "STORED AS parquet " +
+                    "LOCATION 's3://awskrug-jjy-athena/parquet/'")
 
     # Create an RDD containing 100 items from the external table defined above
-    lines=sqlContext.sql("select pickup_timestamp, dropoff_timestamp, vendor_id, pickup_datetime, dropoff_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance, payment_type, fare_amount, extra, mta_tax, tip_amount, tolls_amount, store_and_fwd_flag from yellow_trips_parquet limit 100")
+    #lines=sqlContext.sql("select pickup_timestamp, vendor_id, rate_code, payment_type from yellow_trips_parquet limit 300")
+    lines=sqlContext.sql("select * from yellow_trips_parquet limit 300")
 
-    # Iterate over data
+	# Iterate over data
     lines.foreachPartition(write_partition)
-
-
