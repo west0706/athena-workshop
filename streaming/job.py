@@ -10,8 +10,8 @@ import json
 
 logger = logging.getLogger('py4j')
 
-targetPath="s3://srfrnk-doit/parquet/"
-kinesisStreamName='srfrnk_doit'
+targetPath="s3://<YOUR_BUCKET>/parquet/"
+kinesisStreamName='awskrug'
 
 def write_lines(rdd):
     # Since messages may not always be sent we may receive empty RDDs which must be ignored to prevent exceptions.
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     sqlContext.sql("CREATE EXTERNAL TABLE IF NOT EXISTS yellow_trips_schema(" +
                    "pickup_timestamp BIGINT, dropoff_timestamp BIGINT, vendor_id STRING, pickup_datetime TIMESTAMP, dropoff_datetime TIMESTAMP, pickup_longitude FLOAT, pickup_latitude FLOAT, dropoff_longitude FLOAT, dropoff_latitude FLOAT, rate_code STRING, passenger_count INT, trip_distance FLOAT, payment_type STRING, fare_amount FLOAT, extra FLOAT, mta_tax FLOAT, imp_surcharge FLOAT, tip_amount FLOAT, tolls_amount FLOAT, total_amount FLOAT, store_and_fwd_flag STRING) " +
                    "STORED AS parquet " +
-                   "LOCATION 's3://nyc-yellow-trips/parquet/'")
+                   "LOCATION 's3://awskrug-athena-workshop/labs/parquet/'")
 
     ssc = StreamingContext(sc, 1)
 
