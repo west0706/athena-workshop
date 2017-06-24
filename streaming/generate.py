@@ -35,7 +35,7 @@ if __name__ == "__main__":
                    "LOCATION 's3://<YOUR_BUCKET>/parquet/'")
 
     # Create an RDD containing 100 items from the external table defined above
-    lines=sqlContext.sql("select * from yellow_trips_parquet limit 100")
+    lines=sqlContext.sql("select pickup_timestamp, dropoff_timestamp, vendor_id, pickup_datetime, dropoff_datetime, pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, passenger_count, trip_distance, payment_type, fare_amount, extra, mta_tax, tip_amount, tolls_amount, store_and_fwd_flag from yellow_trips_parquet limit 100")
 
     # Iterate over data
     lines.foreachPartition(write_partition)
