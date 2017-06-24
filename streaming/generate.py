@@ -9,6 +9,8 @@ from boto import kinesis
 import os
 db_name = os.environ['DB_NAME'];
 s3_bucket = os.environ['S3_BUCKET'];
+print(db_name);
+print(s3_bucket);
 
 logger = logging.getLogger('py4j')
 
