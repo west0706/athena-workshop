@@ -1,4 +1,4 @@
-# Lab 5 - Converting to Columnar Formats
+# Lab 4 - 컬럼형식 변환하기
 
 >*이번 랩에서는 CSV 와 JSON 같은 row기반 파일형식을 Kinesis Stream 을 통해 실시간으로 ORC 와 PARQUET 컬럼 형식으로 변환하는 방법에 대해 알아봅니다.*
 >
