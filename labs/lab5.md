@@ -42,13 +42,13 @@ export AWS_SECRET_KEY=<your-secret-key>
 - 작업을 돌려서 Kinesis Stream으로 데이터 입력하기
 
 ```bash
-spark-submit --packages org.apache.spark:spark-streaming-kinesis-asl_2.11:2.1.0 generate.py
+sudo spark-submit --packages org.apache.spark:spark-streaming-kinesis-asl_2.11:2.1.0 generate.py
 ```
 
 - 작업을 돌려서 Kinesis Stream 메세지를 받고 S3 버킷에 PARQUET 저장하기
 
 ```bash
-spark-submit --packages org.apache.spark:spark-streaming-kinesis-asl_2.11:2.1.0 job.py
+sudo spark-submit --packages org.apache.spark:spark-streaming-kinesis-asl_2.11:2.1.0 job.py
 ```
 
 - job이 끝나기를 기다리고 새로 생성되는 PARQUET  새로운 S3 저장되기를 기다립니다.
