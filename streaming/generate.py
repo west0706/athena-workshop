@@ -29,7 +29,7 @@ if __name__ == "__main__":
     sqlContext = SparkSession.builder.enableHiveSupport().getOrCreate();
 
     # Define an external hive table from the PARQUET files stored in S3 to be used as source to read data from.
-    sqlContext.sql("CREATE EXTERNAL TABLE IF NOT EXISTS awskrug.yellow_trips_parquet( " +
+    sqlContext.sql("CREATE EXTERNAL TABLE IF NOT EXISTS yellow_trips_parquet( " +
                    "pickup_timestamp BIGINT, dropoff_timestamp BIGINT, vendor_id STRING, pickup_datetime TIMESTAMP, dropoff_datetime TIMESTAMP, pickup_longitude FLOAT, pickup_latitude FLOAT, dropoff_longitude FLOAT, dropoff_latitude FLOAT, rate_code STRING, passenger_count INT, trip_distance FLOAT, payment_type STRING, fare_amount FLOAT, extra FLOAT, mta_tax FLOAT, imp_surcharge FLOAT, tip_amount FLOAT, tolls_amount FLOAT, total_amount FLOAT, store_and_fwd_flag STRING) " +
                    "STORED AS PARQUET " +
                    "LOCATION 's3://<YOUR_BUCKET>/parquet/'")
