@@ -23,7 +23,7 @@
 - generate.py 파일의 `kinesisStreamName`(라인 14)을 자신이 생성한 Kinesis Stream 이름으로 수정합니다
 .- In a bash terminal run the following commands.
 
->Replace `<PEM FILE>` and `<EMR MASTER>` with the same values used when you connected via SSH
+>`<PEM FILE>` 과 `<EMR MASTER>` 부분을 EMR Master에 접속했던 정보로 수정합니다.
 
 ```bash
 scp -i <PEM FILE> job.py hadoop@<EMR MASTER>:~/job.py
@@ -39,17 +39,16 @@ export AWS_ACCESS_KEY_ID=<your-access-key>
 export AWS_SECRET_KEY=<your-secret-key>
 ```
 
-- Run the job to push data into Kinesis Stream
-- 
+- 작업을 돌려서 Kinesis Stream으로 데이터 입력하기
 
 ```bash
 spark-submit --packages org.apache.spark:spark-streaming-kinesis-asl_2.11:2.1.0 generate.py
 ```
 
-- Run the job to accept Kinesis Stream messages and save those into PARQUET files at your S3 bucket
+- 작업을 돌려서 Kinesis Stream 메세지를 받고 S3 버킷에 PARQUET 저장하기
 
 ```bash
 spark-submit --packages org.apache.spark:spark-streaming-kinesis-asl_2.11:2.1.0 job.py
 ```
 
-- Wait until the job kicks-in and watch your new PARQUET files as they are written into S3.
+- job이 끝나기를 기다리고 새로 생성되는 PARQUET  새로운 S3 저장되기를 기다립니다.
