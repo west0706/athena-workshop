@@ -2,16 +2,16 @@
 
 >*이번 랩에서는 CSV 와 JSON 같은 row기반 파일형식을 Kinesis Stream 을 통해 실시간으로 ORC 와 PARQUET 컬럼 형식으로 변환하는 방법에 대해 알아봅니다.*
 >
->**^^^Please make sure your AWS Management Console is set on US-East Region (N.Virginia)^^^**
+>**^^^AWS 매니지먼트 콘솔을 US-East Region (N.Virginia)로 맞춰주세요.^^^**
 
 ![alt tag](../images/region.png)
 
-## Create a Kinesis Stream
+## Kinesis Stream 만들기
 
-- Open the Kinesis Console at [this link](https://console.aws.amazon.com/kinesis/home?region=us-east-1#/streams/create)
-- For **Stream Name** use your username
-- For **Number of shards** put 1
-- Click **Create Stream**
+- Kinesis 콘솔을 열어주세요 [this link](https://console.aws.amazon.com/kinesis/home?region=us-east-1#/streams/create)
+- **Stream Name** 을 입력합니다.
+- **Number of shards** 에 1을 넣습니다
+- **Create Stream** 을 클릭합니다.
 
 ## Connect to EMR
 
