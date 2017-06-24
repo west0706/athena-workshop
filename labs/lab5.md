@@ -13,15 +13,15 @@
 - **Number of shards** 에 1을 넣습니다
 - **Create Stream** 을 클릭합니다.
 
-## Connect to EMR
+## EMR에 접속합니다
 
-- You can reuse the EMR cluster created in the lab 4.
-- Download the file [job.py](../streaming/job.py) into your local machine
-- Download the file [generate.py](../streaming/generate.py) into your local machine
-- Edit the file job.py - set `targetPath`(line 12) to the path to your S3 bucket.
-- Edit the file job.py - set `kinesisStreamName`(line 13) to the name of the Kinesis Stream you created.
-- Edit the file generate.py - set `kinesisStreamName`(line 14) to the name of the Kinesis Stream you created.
-- In a bash terminal run the following commands.
+- You can reuse the EMR cluster created in the 랩 4에서 만들었던 EMR 클러스터를 재사용합니다.
+- 로컬 PC로 [job.py](../streaming/job.py) 파일을 다운받습니다.
+- 로컬 PC로 [generate.py](../streaming/generate.py) 파일 다운받습니다.
+- job.py 파일의 `targetPath`(라인 12) 을 자신의 S3 버킷으로 수정합니다.
+- job.py 파일의 `kinesisStreamName`(라인 13) 을 자신이 생성한 Kinesis 이름으로 수정합니다.
+- generate.py 파일의 `kinesisStreamName`(라인 14)을 자신이 생성한 Kinesis Stream 이름으로 수정합니다
+.- In a bash terminal run the following commands.
 
 >Replace `<PEM FILE>` and `<EMR MASTER>` with the same values used when you connected via SSH
 
@@ -30,8 +30,9 @@ scp -i <PEM FILE> job.py hadoop@<EMR MASTER>:~/job.py
 scp -i <PEM FILE> generate.py hadoop@<EMR MASTER>:~/generate.py
 ```
 
-- SSH Connect into the EMR master as you have in lab 4.
-- Set AWS credentials for Kinesis API. Replace `<your-access-key>` and `<your-secret-key>`
+- 랩 3에서 생성한 EMR 마스터에 SSH로 접속합니다.
+- Kinesis API를 위한 AWS 크레덴셜을 설정합니다. `<your-access-key>` 와 `<your-secret-key>` 를 변경합니다.
+
 
 ```bash
 export AWS_ACCESS_KEY_ID=<your-access-key>
@@ -39,6 +40,7 @@ export AWS_SECRET_KEY=<your-secret-key>
 ```
 
 - Run the job to push data into Kinesis Stream
+- 
 
 ```bash
 spark-submit --packages org.apache.spark:spark-streaming-kinesis-asl_2.11:2.1.0 generate.py
